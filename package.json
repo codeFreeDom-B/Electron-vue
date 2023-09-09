@@ -5,7 +5,7 @@
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite --open",
-    "build": "run-p type-check build-only",
+    "build": "run-p type-check build-only && electron-builder",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
@@ -30,6 +30,7 @@
     "electron-builder": "^24.6.4",
     "eslint": "^8.46.0",
     "eslint-plugin-vue": "^9.16.1",
+    "naive-ui": "^2.34.4",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.0",
     "sass": "^1.66.1",

@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import { UserSide } from './components'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="content">
+    <UserSide></UserSide>
+  </div>
 </template>
+<style lang="scss" scoped>
+.content {
+  width: 100%;
+  height: 100%;
+  background: red;
+}
+</style>

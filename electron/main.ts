@@ -1,7 +1,8 @@
 import path from 'path'
 import { app, BrowserWindow, Menu,ipcMain } from 'electron'
+import menu from './menu/topMenus'
 let win: BrowserWindow
-Menu.setApplicationMenu(null)
+Menu.setApplicationMenu(menu)
 app.whenReady().then(() => {
   win = new BrowserWindow({
     // width: 1500,//初始化窗口宽度

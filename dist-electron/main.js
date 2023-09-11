@@ -1,1 +1,32 @@
-"use strict";const i=require("path"),n=require("electron");let e;n.Menu.setApplicationMenu(null);n.app.whenReady().then(()=>{e=new n.BrowserWindow({width:1e3,height:700,transparent:!0,frame:!1,resizable:!1,webPreferences:{nodeIntegration:!0,contextIsolation:!1}}),n.ipcMain.on("window-close",function(){e.close()}),n.ipcMain.on("window-min",function(){e.minimize()}),process.env.VITE_DEV_SERVER_URL?e.loadURL(process.env.VITE_DEV_SERVER_URL):e.loadFile(i.join(__dirname,"../dist/index.html"))});
+"use strict";
+const path = require("path");
+const electron = require("electron");
+let win;
+electron.Menu.setApplicationMenu(null);
+electron.app.whenReady().then(() => {
+  win = new electron.BrowserWindow({
+    // width: 1500,//初始化窗口宽度
+    // height: 900,//初始化窗口高度
+    width: 1e3,
+    height: 700,
+    transparent: true,
+    frame: false,
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
+  electron.ipcMain.on("window-close", function() {
+    win.close();
+  });
+  electron.ipcMain.on("window-min", function() {
+    win.minimize();
+  });
+  win.webContents.openDevTools();
+  if (process.env.VITE_DEV_SERVER_URL) {
+    win.loadURL(process.env.VITE_DEV_SERVER_URL);
+  } else {
+    win.loadFile(path.join(__dirname, "../dist/index.html"));
+  }
+});

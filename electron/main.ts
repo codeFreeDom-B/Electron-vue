@@ -10,6 +10,7 @@ app.whenReady().then(() => {
     height: 700,
     transparent: true,
     frame: false /*去掉顶部导航 去掉关闭按钮 最大化最小化按钮*/,
+    
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
@@ -23,7 +24,7 @@ ipcMain.on('window-close',function (){
 ipcMain.on('window-min',function (){
 	win.minimize();
  })
-  // win.webContents.openDevTools() //在开发者模式下打开控制台,后期可以搞成通过环境来判断是否开启
+  win.webContents.openDevTools() //在开发者模式下打开控制台,后期可以搞成通过环境来判断是否开启
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {

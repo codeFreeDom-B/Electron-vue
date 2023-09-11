@@ -4,7 +4,13 @@ import { LayOutMain, LayOutSide } from './components'
 <template>
   <div class="layout">
     <LayOutSide></LayOutSide>
-    <LayOutMain></LayOutMain>
+    <LayOutMain>
+      <template #routes>
+        <div class="routes">
+          <RouterView></RouterView>
+        </div>
+      </template>
+    </LayOutMain>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -12,5 +18,8 @@ import { LayOutMain, LayOutSide } from './components'
   width: 100%;
   height: 100%;
   display: flex;
+  .routes {
+    margin: 20px;
+  }
 }
 </style>

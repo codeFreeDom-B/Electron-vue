@@ -12,6 +12,6 @@ export const getUUID = (randomLength = 10) => {
  * * Icon
  * @param { Number } randomLength
  */
-export const renderIcon=(item: Component)=>{
-  return h(NIcon, { size: 24}, () => h(item))
+export const renderIcon = (item: Component) => {
+  return () => h(NIcon,  { size: 24}, { default: () => h(item) })
 }

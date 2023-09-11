@@ -19,6 +19,9 @@ const handleClick = (item: ActionBarType) => {
         </div>
       </div>
     </div>
+    <div>
+      <slot name="routes"></slot>
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>

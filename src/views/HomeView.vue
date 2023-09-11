@@ -1,11 +1,7 @@
-<script setup lang="ts">
-import { UserSide } from './components'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div class="content">
-    <UserSide></UserSide>
-  </div>
+  <div class="content">sunheng</div>
 </template>
 <style lang="scss" scoped>
 .content {

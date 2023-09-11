@@ -8,15 +8,13 @@ import router from './router'
 
 import naive from 'naive-ui'
 
-const app = createApp(App)
+const appInit = () => {
+  const app = createApp(App)
+  app.use(createPinia())
+  app.use(router)
+  app.use(naive)
+  setTimeout(() => app.mount('#app'), 2700)
+}
+appInit()
 
-
-app.use(createPinia())
-app.use(router)
-
-app.use(naive)
-
-
-
-setTimeout(()=>app.mount('#app'),2700)
 

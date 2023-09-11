@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@vicons/ionicons5':
+    specifier: ^0.12.0
+    version: 0.12.0
   pinia:
     specifier: ^2.1.6
     version: 2.1.6(typescript@5.1.6)(vue@3.3.4)
@@ -40,6 +43,9 @@ devDependencies:
   '@vue/tsconfig':
     specifier: ^0.4.0
     version: 0.4.0
+  '@vueuse/electron':
+    specifier: ^10.4.1
+    version: 10.4.1(electron@26.2.0)(vue@3.3.4)
   electron:
     specifier: ^26.2.0
     version: 26.2.0
@@ -1068,6 +1074,10 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
+  /@vicons/ionicons5@0.12.0:
+    resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
+    dev: false
+
   /@vitejs/plugin-vue-jsx@3.0.2(vite@4.4.9)(vue@3.3.4):
     resolution: {integrity: sha512-obF26P2Z4Ogy3cPp07B4VaW6rpiu0ue4OT2Y15UxT5BZZ76haUY9guOsZV3uWh/I6xc+VeiW+ZVabRE82FyzWw==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -1278,6 +1288,28 @@ packages:
       '@vue/language-core': 1.8.10(typescript@5.1.6)
     transitivePeerDependencies:
       - typescript
+    dev: true
+
+  /@vueuse/electron@10.4.1(electron@26.2.0)(vue@3.3.4):
+    resolution: {integrity: sha512-JMAhtqPRHNcdIXiKO5GJUmZr1aAV4RSJ4lZ65fWBbQ7o/DrIElKiczcsXUhGtCXDg+t8vr7hwSn300w9NAYnwQ==}
+    peerDependencies:
+      electron: '>=9.0.0'
+    dependencies:
+      '@vueuse/shared': 10.4.1(vue@3.3.4)
+      electron: 26.2.0
+      vue-demi: 0.14.6(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
+  /@vueuse/shared@10.4.1(vue@3.3.4):
+    resolution: {integrity: sha512-vz5hbAM4qA0lDKmcr2y3pPdU+2EVw/yzfRsBdu+6+USGa4PxqSQRYIUC9/NcT06y+ZgaTsyURw2I9qOFaaXHAg==}
+    dependencies:
+      vue-demi: 0.14.6(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
     dev: true
 
   /@xmldom/xmldom@0.8.10:
@@ -4404,7 +4436,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.3.4
-    dev: false
 
   /vue-eslint-parser@9.3.1(eslint@8.48.0):
     resolution: {integrity: sha512-Clr85iD2XFZ3lJ52/ppmUDG/spxQu6+MAeHXjjyI4I1NUYZ9xmenQp4N0oaHJhrA8OOxltCVxMRfANGa70vU0g==}

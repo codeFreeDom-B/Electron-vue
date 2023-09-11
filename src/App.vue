@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { LayOut } from './components'
+</script>
 
 <template>
   <div class="main">
@@ -15,7 +17,8 @@
       :image-width="64"
       :image-opacity="0.24"
     />
-    <RouterView></RouterView>
+    <LayOut></LayOut>
+    <!-- <RouterView></RouterView> -->
   </div>
 </template>
 

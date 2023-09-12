@@ -11,7 +11,6 @@ app.whenReady().then(() => {
     height: 700,
     transparent: true,
     frame: false /*去掉顶部导航 去掉关闭按钮 最大化最小化按钮*/,
-    
     resizable: false,
     webPreferences: {
       nodeIntegration: true,

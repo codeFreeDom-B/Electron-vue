@@ -1,8 +1,28 @@
 "use strict";
 const path = require("path");
 const electron = require("electron");
+const { Menu } = require("electron");
+const { dialog } = require("electron");
+const menuItem = [
+  {
+    label: "帮助",
+    submenu: [{ label: "检查更新" }, { label: "关于", click: aboutClick }]
+  }
+];
+function aboutClick() {
+  dialog.showMessageBox({
+    message: "https://github.com/codeFreeDom-B/Electron-vue",
+    type: "info",
+    // icon: icon,
+    buttons: ["关闭"],
+    title: "关于",
+    detail: "",
+    cancelId: 0
+  });
+}
+const menu = Menu.buildFromTemplate(menuItem);
 let win;
-electron.Menu.setApplicationMenu(null);
+electron.Menu.setApplicationMenu(menu);
 electron.app.whenReady().then(() => {
   win = new electron.BrowserWindow({
     // width: 1500,//初始化窗口宽度

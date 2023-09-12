@@ -22,7 +22,6 @@ const userName = ref('SENU')
 const menuOptionsStore = useMenuOptionStore()
 const menuOptions = menuOptionsStore.getMenuOptions
 let activeKey: Ref<string | (() => VNodeChild)> = ref(menuOptions[0].label as () => VNodeChild)
-console.log(activeKey.value, 'activeKey')
 </script>
 <style scoped lang="scss">
 .side {

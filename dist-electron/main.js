@@ -21,6 +21,7 @@ function aboutClick() {
   });
 }
 const menu = Menu.buildFromTemplate(menuItem);
+const fs = require("fs");
 let win;
 electron.Menu.setApplicationMenu(menu);
 electron.app.whenReady().then(() => {
@@ -36,6 +37,18 @@ electron.app.whenReady().then(() => {
       nodeIntegration: true,
       contextIsolation: false
     }
+  });
+  electron.ipcMain.on("save-file", function(event, data) {
+    const { fileData, fileName } = data;
+    const savePath = path.join(electron.app.getPath("userData"), `${fileName}`);
+    console.log(fileData, fileName, "fileData");
+    fs.writeFile(savePath, Buffer.from(fileData), (err) => {
+      if (err) {
+        console.error("err:", err);
+        return;
+      }
+      console.log("success");
+    });
   });
   electron.ipcMain.on("window-close", function() {
     win.close();

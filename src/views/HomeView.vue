@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { onMounted, nextTick } from 'vue'
-
+import { useIpcRenderer } from '@vueuse/electron'
+import type { NButton } from 'naive-ui'
+import EditPage from './desiginer/index'
+const IpcRenderer = useIpcRenderer()
 onMounted(() => {
   if (navigator && navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia) {
     navigator.mediaDevices
@@ -26,12 +29,19 @@ onMounted(() => {
     // 浏览器不支持获取屏幕共享，有可能是当前页面不是https，也可能是当前浏览器不支持屏幕共享
   }
 })
+const hanldeCreate = () => {
+  IpcRenderer.send('window-max')
+}
 </script>
 
 <template>
   <div class="content">
     <video id="localVideo" controls></video>
   </div>
+  <div class="btn">
+    <NButton @click="hanldeCreate"> Create </NButton>
+  </div>
+  <EditPage></EditPage>
 </template>
 <style lang="scss" scoped>
 .content {
@@ -43,5 +53,9 @@ onMounted(() => {
   width: 400px;
   height: 300px;
   background: red;
+}
+.btn {
+  user-select: none;
+  -webkit-app-region: no-drag;
 }
 </style>

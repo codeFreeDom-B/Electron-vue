@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 import type { MenuOptionType } from './menuOptionsStore.d'
 import { RouterLink } from 'vue-router'
 import { h } from 'vue'
-import { renderIcon } from "@/utils/utils"
-import { SwapHorizontal } from '@vicons/ionicons5'
+import { renderIcon,renderAvatar } from "@/utils/utils"
+import { SwapHorizontal,LogoGithub,Power,LogoWechat,LogoAlipay,AlbumsSharp,CashSharp,EarthSharp,Easel } from '@vicons/ionicons5'
 import type { MenuOption } from 'naive-ui'
 
 export const useMenuOptionStore = defineStore({
@@ -11,21 +11,24 @@ export const useMenuOptionStore = defineStore({
   state: (): MenuOptionType => ({
     MenuOption: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: {
-                name: 'home',
-                params: {
-                  lang: 'zh-CN'
-                }
-              }
-            },
-            { default: () => '文件传输' }
-          ),
-        key: 'go-back-home',
-        icon: renderIcon(SwapHorizontal)
+        label:"SUN HENG",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            fontSize: "24px",
+            fontWeight:600
+          }
+        },
+        icon: renderAvatar("layout",'avatar.jpg')
+      },
+      {
+        key: 'divider-1',
+        type: 'divider',
+        props: {
+          style: {
+            marginLeft: '32px'
+          }
+        }
       },
       {
         label: () =>
@@ -33,22 +36,113 @@ export const useMenuOptionStore = defineStore({
             RouterLink,
             {
               to: {
-                name: 'about',
+                name: 'X6Design',
                 params: {
                   lang: 'zh-CN'
                 }
               }
             },
-            { default: () => '协同画布' }
+            { default: () => '组态设计' }
           ),
+        key: 'go-back-home',
+        icon: renderIcon(CashSharp)
+      },
+      {
+        label:"大屏设计",
         key: 'go-back-canvas',
-        icon: renderIcon(SwapHorizontal)
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(Easel)
+      },
+      {
+        label:"3D设计",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(EarthSharp)
+      },
+   
+      {
+        label:"说明文档",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(AlbumsSharp)
+      }, {
+        label:"GITHUB",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(LogoGithub)
+      } ,
+      {
+        label:"加入群聊",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(LogoWechat)
+      },
+      {
+        label:"赞赏作者",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(LogoAlipay)
+      },
+      {
+        label:"切换账号",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(SwapHorizontal)
+      },
+    
+      {
+        label:"退出软件",
+        key: 'go-back-canvas',
+        props: {
+          style: {
+            color: 'red',
+            opacity:1
+          }
+        },
+       icon: renderIcon(Power)
       }
     ]
   }),
   getters: {
-    getMenuOptions():MenuOption[] {
-    return this.MenuOption
+    getMenuOptions(): MenuOption[] {
+    
+      // @ts-nocheck
+      return this.MenuOption
     }
   }
 })

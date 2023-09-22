@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 import type { ActionBarType } from '@/components/Layout/index.d'
 import { useActionBarStore } from '@/stores/modules/actionBarStore/actionBarStore'
 const useBarList = useActionBarStore()
-const ActionBar: ActionBarType[] = reactive(useBarList.getActionBarList)
+const ActionBar: ActionBarType[] = useBarList.getActionBarList
 import { useIpcRenderer } from '@vueuse/electron'
 const ipcRenderer = useIpcRenderer()
 const handleClick = (item: ActionBarType) => {

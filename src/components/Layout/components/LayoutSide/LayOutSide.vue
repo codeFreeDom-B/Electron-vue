@@ -1,16 +1,20 @@
 <template>
-  <div class="side">
-    <div class="verison">
-      {{ viersion }}
-    </div>
-    <div class="user">
-      <n-avatar round :size="48" src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" />
-      <div class="username">{{ userName }}</div>
-    </div>
-    <div class="menu">
-      <n-menu v-model:value="activeKey" :options="menuOptions" />
-    </div>
-  </div>
+  <NLayout has-sider sider-placement="right" style="height: 100%">
+    <NLayout>
+      <slot name="content"></slot>
+    </NLayout>
+    <NLayoutSider
+      bordered
+      show-trigger="bar"
+      collapse-mode="width"
+      :collapsed-width="64"
+      :width="240"
+      :native-scrollbar="false"
+      class="menu"
+    >
+      <NMenu :collapsed-width="64" :collapsed-icon-size="40" :options="menuOptions" />
+    </NLayoutSider>
+  </NLayout>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
@@ -24,52 +28,32 @@ const menuOptions = menuOptionsStore.getMenuOptions
 let activeKey: Ref<string | (() => VNodeChild)> = ref(menuOptions[0].label as () => VNodeChild)
 </script>
 <style scoped lang="scss">
-.side {
-  width: 293px;
-  height: 100%;
-  padding: 20px;
-  background-color: rgba($color: #99c6fd, $alpha: 0.2);
-  .verison {
-    font-size: 20px;
-    color: #9aa2b0;
-    text-align: center;
-    padding-right: 5px;
-  }
-  .user {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 95%;
-    height: 155px;
-    margin: 0 auto;
-    margin-top: 30px;
-    .username {
-      margin-top: 20px;
-      font-size: 24px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-  }
-  .menu {
-    user-select: none;
-    -webkit-app-region: no-drag;
-    :deep(.n-menu-item):hover {
-      background: #18a058;
-      --n-item-color-hover: rgba(243, 243, 245, 0);
-      .n-menu-item-content--selected {
-        a {
-          color: #fafafa !important;
-        }
-      }
+.menu {
+  user-select: none;
+  -webkit-app-region: no-drag;
+  :deep(.n-menu-item):hover {
+    background: #18a058;
+    --n-item-color-hover: rgba(243, 243, 245, 0);
+    .n-menu-item-content--selected {
       a {
         color: #fafafa !important;
       }
     }
-
-    :deep(.n-menu-item-content):hover {
-      background: #18a058;
+    a {
+      color: #fafafa !important;
     }
+  }
+  :deep(.n-menu) {
+    .n-menu-item {
+      margin-top: 22px;
+    }
+  }
+  :deep(.n-menu-item-content):hover {
+    background: #18a058;
+  }
+  :deep(.n-layout-toggle-bar) {
+    user-select: none;
+    -webkit-app-region: no-drag;
   }
 }
 </style>

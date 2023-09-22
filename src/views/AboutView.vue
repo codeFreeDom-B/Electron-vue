@@ -39,8 +39,6 @@ export default {
 
         peer.value = new SimplePeer({
           channelConfig: {
-            maxRetransmitTime: 100, // 设置最大重传时间为 100 毫秒
-            maxPacketLifeTime: null,
             ordered: true // 设置为 false，以便支持无序传输（针对大文件传输）
             // maxRetransmits: 0 // 禁用重传（针对大文件传输）
           },
@@ -106,6 +104,7 @@ export default {
         const fileData = fileReader.result // ArrayBuffer
         const totalChunks = Math.ceil(fileData.byteLength / chunkSize)
         let chunkIndex = 0
+        let intervalId // 保存 intervalId
 
         const sendNextChunk = () => {
           const start = chunkIndex * chunkSize
@@ -116,15 +115,16 @@ export default {
             isAll: chunk.byteLength < chunkSize,
             fileData: Array.from(new Uint8Array(chunk))
           }
-          console.log(sendData, chunk.byteLength, 'sendDatasendData')
           const jsonString = JSON.stringify(sendData)
           peer.value.send(jsonString)
-          if (++chunkIndex < totalChunks) {
-            setTimeout(sendNextChunk, 10) // 延迟发送下一个数据块
+          chunkIndex++
+
+          if (chunkIndex >= totalChunks) {
+            clearInterval(intervalId) // 所有数据块已发送完毕，清除定时器
           }
         }
 
-        sendNextChunk()
+        intervalId = setInterval(sendNextChunk, 10) // 每隔 10 毫秒发送下一个数据块
       }
       fileReader.readAsArrayBuffer(file)
     }

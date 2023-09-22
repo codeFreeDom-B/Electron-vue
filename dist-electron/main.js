@@ -26,9 +26,7 @@ let win;
 electron.Menu.setApplicationMenu(menu);
 electron.app.whenReady().then(() => {
   win = new electron.BrowserWindow({
-    // width: 1500,//初始化窗口宽度
-    // height: 900,//初始化窗口高度
-    width: 1e3,
+    width: 1200,
     height: 700,
     transparent: true,
     frame: false,
@@ -55,6 +53,9 @@ electron.app.whenReady().then(() => {
   });
   electron.ipcMain.on("window-min", function() {
     win.minimize();
+  });
+  electron.ipcMain.on("window-max", function() {
+    win.maximize();
   });
   win.webContents.openDevTools();
   if (process.env.VITE_DEV_SERVER_URL) {

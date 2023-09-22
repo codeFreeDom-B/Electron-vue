@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { LayOut } from './components'
+import Login from './views/login/index.vue'
 </script>
 
 <template>
   <div class="main">
-    <n-watermark
+    <!-- <n-watermark
       content="孙恒"
       cross
       fullscreen
@@ -16,9 +17,10 @@ import { LayOut } from './components'
       :y-offset="0"
       :image-width="64"
       :image-opacity="0.24"
-    />
-    <LayOut></LayOut>
-    <!-- <RouterView></RouterView> -->
+    /> -->
+    <!-- <Login></Login> -->
+    <!-- <LayOut></LayOut> -->
+    <RouterView></RouterView>
   </div>
 </template>
 
@@ -30,10 +32,10 @@ import { LayOut } from './components'
 .main {
   margin: 0;
   padding: 0;
-  width: 98vw;
-  height: 98vh;
+  width: 100vw;
+  height: 100vh;
   border-radius: 20px;
-  background: #fafafa;
+  // background: #fafafa;
   overflow: hidden;
 }
 </style>

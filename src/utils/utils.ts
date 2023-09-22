@@ -1,4 +1,4 @@
-import {NIcon} from "naive-ui";
+import {NIcon,NAvatar} from "naive-ui";
 import type { Component } from 'vue'
 import { h } from "vue"
 /**
@@ -10,8 +10,25 @@ export const getUUID = (randomLength = 10) => {
 }
 /**
  * * Icon
- * @param { Number } randomLength
+ * @param { Component } Component
  */
 export const renderIcon = (item: Component) => {
   return () => h(NIcon,  { size: 24}, { default: () => h(item) })
 }
+/**
+ *  头像
+ * @param  {string} URL
+ * @returns 
+ */
+export const renderAvatar = (path:string,name:string) => {
+  return () => h(NAvatar,  { size: 40 ,src:getAssetsFile(path,name)} )
+}
+/**
+ * 
+ * @param 获取图片
+ * @param name 
+ * @returns 
+ */
+export const getAssetsFile = (path: string, name: string) => {
+  return new URL(`../assets/view/${path}/${name}`, import.meta.url).href;
+};

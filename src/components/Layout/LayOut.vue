@@ -3,21 +3,18 @@ import { LayOutMain, LayOutSide } from './components'
 </script>
 <template>
   <div class="layout">
-    <LayOutSide></LayOutSide>
-    <LayOutMain>
-      <template #routes>
-        <div class="routes">
-          <RouterView></RouterView>
-        </div>
+    <LayOutSide>
+      <template #content>
+        <RouterView></RouterView>
       </template>
-    </LayOutMain>
+    </LayOutSide>
   </div>
 </template>
 <style lang="scss" scoped>
 .layout {
   width: 100%;
   height: 100%;
-  display: flex;
+  background: #101014;
   .routes {
     margin: 20px;
   }

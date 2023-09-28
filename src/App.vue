@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { LayOut } from './components'
-import Login from './views/login/index.vue'
+import { darkTheme } from 'naive-ui'
 </script>
 
 <template>
@@ -18,9 +17,9 @@ import Login from './views/login/index.vue'
       :image-width="64"
       :image-opacity="0.24"
     /> -->
-    <!-- <Login></Login> -->
-    <!-- <LayOut></LayOut> -->
-    <RouterView></RouterView>
+    <NConfigProvider class="config" :theme="darkTheme">
+      <RouterView></RouterView>
+    </NConfigProvider>
   </div>
 </template>
 
@@ -37,6 +36,10 @@ import Login from './views/login/index.vue'
   border-radius: 20px;
   // background: #fafafa;
   overflow: hidden;
+  .config {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
 <style>

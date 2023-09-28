@@ -1,12 +1,16 @@
+<!--
+ * @Author: SUN HENG
+ * @Date: 2023-09-21 21:32:10
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-09-28 17:01:28
+ * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\SideTop\SideTop.vue
+ * @Description: 
+-->
 <template>
   <div class="side_top">
     <div style="min-width: 64px; text-align: center">组件</div>
     <div>
-      <n-input round placeholder="搜索">
-        <!-- <template #suffix>
-          <n-icon :component="FlashOutline" />
-        </template> -->
-      </n-input>
+      <n-input round placeholder="搜索"> </n-input>
     </div>
   </div>
 </template>
@@ -20,7 +24,9 @@ export default { name: 'SideTop' }
   height: 42px;
   line-height: 42px;
   display: flex;
-  border-bottom: 1px solid #efeff5;
+  user-select: none;
+  -webkit-app-region: no-drag;
+  border-bottom: 1px solid var(--n-color);
   div:nth-child(2) {
     flex: 1;
   }

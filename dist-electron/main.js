@@ -39,7 +39,6 @@ electron.app.whenReady().then(() => {
   electron.ipcMain.on("save-file", function(event, data) {
     const { fileData, fileName } = data;
     const savePath = path.join(electron.app.getPath("userData"), `${fileName}`);
-    console.log(fileData, fileName, "fileData");
     fs.writeFile(savePath, Buffer.from(fileData), (err) => {
       if (err) {
         console.error("err:", err);

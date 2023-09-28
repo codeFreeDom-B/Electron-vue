@@ -1,3 +1,11 @@
+<!--
+ * @Author: SUN HENG
+ * @Date: 2023-09-21 15:19:07
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-09-28 17:20:48
+ * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
+ * @Description: 
+-->
 <template>
   <NLayout position="absolute" class="EditPage">
     <NLayout-header style="height: 64px" bordered>
@@ -29,7 +37,7 @@
         <DesignSide></DesignSide>
       </NLayout-sider>
       <NLayout content-style="padding: 24px;">
-        <slot name="canvas"></slot>
+        <slot name="canvas"> </slot>
       </NLayout>
     </NLayout>
   </NLayout>

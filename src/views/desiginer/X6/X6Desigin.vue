@@ -1,5 +1,6 @@
 <template>
   <EditPage class="EditPage">
+    <!-- <WorkSpace> </WorkSpace> -->
     <template #canvas>
       <div
         ref="graphContainer"
@@ -14,6 +15,7 @@
 import EditPage from '../index'
 import useGraphInit from '../hooks/useGraphInit'
 import eventEmitter from '../hooks/useEventMitt'
+import WorkSpace from '../components/DesignGraph/DesignGraph.vue'
 import { nextTick, onMounted } from 'vue'
 const { dndRef, graphRef, graphContainer } = useGraphInit()
 onMounted(() => {

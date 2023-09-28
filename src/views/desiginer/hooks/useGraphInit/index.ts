@@ -12,7 +12,7 @@ export default function () {
     
     graphRef.value= new Graph({
       container: graphContainer.value,
-      width: 900,
+      width: 1920,
       height: 600,
       background: {
         color: 'red'

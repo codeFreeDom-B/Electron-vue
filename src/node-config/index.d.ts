@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 14:36:45
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-09-28 15:32:26
+ * @LastEditTime: 2023-10-08 10:13:35
  * @FilePath: \Electronvite\src\node-config\index.d.ts
  * @Description:
  */
@@ -26,4 +26,6 @@ export interface NodeConfig {
   Image: string
   node: any
 }
+
+
 

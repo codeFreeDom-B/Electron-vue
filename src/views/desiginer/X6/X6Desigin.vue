@@ -1,3 +1,11 @@
+<!--
+ * @Author: SUN HENG
+ * @Date: 2023-09-21 15:12:34
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-10-07 14:40:14
+ * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
+ * @Description: 
+-->
 <template>
   <EditPage class="EditPage">
     <!-- <WorkSpace> </WorkSpace> -->
@@ -37,10 +45,13 @@ const handleDragEnter = () => {
 .EditPage {
   width: 100%;
   height: 100%;
-  background: red;
   .graphContainer {
     user-select: none;
     -webkit-app-region: no-drag;
+    :deep(.x6-widget-selection-box) {
+      border: 2px dashed rgb(99, 226, 183);
+      box-shadow: 0 0 0 0;
+    }
   }
 }
 </style>

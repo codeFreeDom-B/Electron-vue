@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-09-28 17:20:48
+ * @LastEditTime: 2023-10-08 20:00:40
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -24,8 +24,10 @@
         </template>
       </DesignHeader>
     </NLayout-header>
-    <NLayout has-sider position="absolute" style="top: 64px">
-      <NLayout-sider
+
+    <NLayout has-sider position="absolute" style="top: 64px" sider-placement="right">
+      <NLayoutSider
+        class="node-side"
         bordered
         content-style="padding: 24px;"
         show-trigger="bar"
@@ -35,10 +37,22 @@
         :native-scrollbar="false"
       >
         <DesignSide></DesignSide>
-      </NLayout-sider>
+      </NLayoutSider>
+
       <NLayout content-style="padding: 24px;">
         <slot name="canvas"> </slot>
       </NLayout>
+      <NLayoutSider
+        bordered
+        content-style="padding: 24px;"
+        show-trigger="bar"
+        collapse-mode="width"
+        :collapsed-width="0"
+        :width="330"
+        :native-scrollbar="false"
+      >
+        <ConfigPage></ConfigPage>
+      </NLayoutSider>
     </NLayout>
   </NLayout>
 </template>
@@ -48,9 +62,20 @@ export default { name: 'EditorPage' }
 <script setup lang="ts">
 import { DesignHeader, DesignSide } from './components/index'
 import { NButton, NLayout } from 'naive-ui'
+import { useSelectNode } from '@/views/desiginer/hooks/useSelectNode'
+import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
+import EventEmitter from '@/views/desiginer/hooks/useEventMitt'
+import { ConfigPage } from './components/ConfigPage'
 import { useEditPageStore } from '@/stores/modules/editPageStore/editPageStore'
+import { onMounted } from 'vue'
+import type { Cell } from '@antv/x6'
 const EditPageStore = useEditPageStore()
 const ActionBar = EditPageStore.getActionBar
+onMounted(() => {
+  EventEmitter.on(EventEmitterEnum.CELL_SELECT, (cell) => {
+    useSelectNode(cell as Cell)
+  })
+})
 </script>
 <style lang="scss" scoped>
 .EditPage {
@@ -59,10 +84,17 @@ const ActionBar = EditPageStore.getActionBar
   :deep(.n-layout-toggle-bar) {
     user-select: none;
     -webkit-app-region: no-drag;
+    top: calc(50% - 64px);
   }
   :deep(.n-scrollbar-content) {
     padding: 0 !important;
     height: 100%;
+  }
+  .node-side {
+    :deep(.n-layout-toggle-bar) {
+      left: initial;
+      transform: rotate(0deg);
+    }
   }
 }
 </style>

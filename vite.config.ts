@@ -1,3 +1,11 @@
+/*
+ * @Author: SUN HENG
+ * @Date: 2023-09-08 11:00:47
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-10-09 09:52:38
+ * @FilePath: \Electronvite\vite.config.ts
+ * @Description: 
+ */
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
@@ -19,6 +27,9 @@ export default defineConfig({
   // },
   
   server: {
+    host:'0.0.0.0' ,//ip地址
+    port: 80, // 设置服务启动端口号
+    open: true, // 设置服务启动时是否自动打开浏览器
     proxy: {
       '/socket.io': {
         target: 'http://localhost:3000',

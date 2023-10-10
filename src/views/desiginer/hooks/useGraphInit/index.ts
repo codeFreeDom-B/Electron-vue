@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-08 18:01:28
+ * @LastEditTime: 2023-10-09 14:02:58
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -12,7 +12,7 @@ import { Dnd } from '@antv/x6-plugin-dnd'
 import { useClipboard } from '@/views/desiginer/plug/clipboard.plug'
 import { useSelection } from '@/views/desiginer/plug/selection.plug'
 import { useHistory } from '@/views/desiginer/plug/history.plug'
-import { setDefaultGraphListeners } from '@/views/desiginer/utils'
+import { setDefaultGraphListeners,toSetCellDefaultConfig } from '@/views/desiginer/utils'
 
 
 import { useIpcRenderer } from '@vueuse/electron'
@@ -33,6 +33,7 @@ export default function () {
       }
     })
     setDefaultGraphListeners(graphRef.value)
+    toSetCellDefaultConfig(graphRef.value)
     graphRef.value.use(useSelection())
     graphRef.value.use(useHistory())
     dndRef.value = new Dnd({

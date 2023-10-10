@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 14:39:31
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-08 21:21:57
+ * @LastEditTime: 2023-10-09 13:43:19
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\ConfigPage.vue
  * @Description: 
 -->
@@ -26,17 +26,17 @@ import type { Cell } from '@antv/x6'
 
 const componentTypeEnum = {
   page: markRaw(CanvasPage),
-  line: markRaw(LineConfig)
+  edge: markRaw(LineConfig),
+  node: markRaw(CanvasPage)
 }
 let componentType = ref(componentTypeEnum.page)
 onMounted(() => {
   EventEmitter.on(EventEmitterEnum.ACTIVE_CELL, (cell) => {
+    console.log(cell, 'cellaaaa')
     if (!cell) return (componentType.value = componentTypeEnum.page)
-    if ((cell as Cell).shape == 'edge') {
-      componentType.value = componentTypeEnum.line
-    } else {
-      componentType.value = componentTypeEnum.page
-    }
+
+    // @ts-ignore
+    componentType.value = componentTypeEnum[cell.shape]
   })
 })
 </script>

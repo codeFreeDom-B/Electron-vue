@@ -2,13 +2,14 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-08 18:06:49
+ * @LastEditTime: 2023-10-09 14:09:28
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
-import type { Graph } from '@antv/x6'
+import type { Cell, Graph } from '@antv/x6'
+import _ from "lodash";
 import eventEmitter from '@/views/desiginer/hooks/useEventMitt'
-import {EventEmitterEnum} from "@/views/desiginer/utils/EventMitt"
+import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
 
 export function setDefaultGraphListeners(graph: Graph) {
   // 双击创建边
@@ -39,9 +40,28 @@ export function setDefaultGraphListeners(graph: Graph) {
   graph.on('edge:mouseleave', ({ cell }) => {
     cell.removeTools()
   })
-
-  graph.on('cell:click', ({cell}) => {
-    // 发送选中的消息
-    eventEmitter.emit(EventEmitterEnum.CELL_SELECT,cell)
+}
+export function toSetCellDefaultConfig(graph: Graph) {
+  // 当added时，添加基础配置
+  graph.on("edge:added", ({edge}) => {
+    setCellStoreDataDefaultValue(edge)
   })
+  graph.on("node:added", ({node}) => {
+    setCellStoreDataDefaultValue(node)
+})
+  // graph.on('cell:click', ({ cell }) => {
+  //   // 发送选中的消息
+  //   eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
+  //     shape: cell.shape == 'edge' ? cell.shape : 'node',
+  //     node:cell
+  //   })
+  // })
+}
+
+
+function setCellStoreDataDefaultValue(cell:Cell) {
+  const data = _.cloneDeep(cell.getProp());
+  console.log(data,'datass');
+  
+  
 }

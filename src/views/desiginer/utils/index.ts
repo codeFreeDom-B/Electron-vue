@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-09 14:09:28
+ * @LastEditTime: 2023-10-13 16:20:38
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -48,7 +48,11 @@ export function toSetCellDefaultConfig(graph: Graph) {
   })
   graph.on("node:added", ({node}) => {
     setCellStoreDataDefaultValue(node)
-})
+  })
+  const { sx, sy } = GraphInstance.scale();
+  console.log(GraphInstance.scale(),GraphInstance.view.background.style.backgroundColor='red',sx,sy,'GraphInstance.scale()');
+  
+  
   // graph.on('cell:click', ({ cell }) => {
   //   // 发送选中的消息
   //   eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
@@ -61,7 +65,11 @@ export function toSetCellDefaultConfig(graph: Graph) {
 
 function setCellStoreDataDefaultValue(cell:Cell) {
   const data = _.cloneDeep(cell.getProp());
-  console.log(data,'datass');
+  console.log(cell.isNode(),'setCellStoreDataDefaultValue');
+  
+  if (!data.title) {
+    console.log(data,'data');
+  }
   
   
 }

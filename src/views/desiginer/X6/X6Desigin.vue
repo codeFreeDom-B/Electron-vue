@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-07 14:40:14
+ * @LastEditTime: 2023-10-13 15:40:01
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -46,6 +46,7 @@ const handleDragEnter = () => {
   width: 100%;
   height: 100%;
   .graphContainer {
+    overflow: hidden;
     user-select: none;
     -webkit-app-region: no-drag;
     :deep(.x6-widget-selection-box) {

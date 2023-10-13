@@ -1,3 +1,11 @@
+<!--
+ * @Author: SUN HENG
+ * @Date: 2023-09-09 12:08:18
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-10-13 09:44:58
+ * @FilePath: \Electronvite\src\components\Layout\components\LayoutMain\LayOutMain.vue
+ * @Description: 
+-->
 <script setup lang="ts">
 import { reactive } from 'vue'
 import type { ActionBarType } from '@/components/Layout/index.d'
@@ -43,6 +51,7 @@ const handleClick = (item: ActionBarType) => {
       border-radius: 10px;
       overflow: hidden;
       .bar_dom {
+        color: #dee1e6;
         text-align: center;
         width: 60px;
         height: 35px;

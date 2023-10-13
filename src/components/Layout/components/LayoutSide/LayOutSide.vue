@@ -32,7 +32,7 @@ import { useMenuOptionStore } from '@/stores/modules/menuOptionsStore/menuOption
 import { useRouter } from 'vue-router'
 const menuOptionsStore = useMenuOptionStore()
 const menuOptions = menuOptionsStore.getMenuOptions
-let activeKey: Ref<string | (() => VNodeChild)> = ref(menuOptions[2].key as () => VNodeChild)
+// let activeKey: Ref<string | (() => VNodeChild)> = ref(menuOptions[2].key as () => VNodeChild)
 let isTrigger: Ref<boolean | string> = ref('bar')
 const Router = useRouter()
 Router.beforeEach((to, from, next) => {

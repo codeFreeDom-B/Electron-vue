@@ -54,12 +54,12 @@ export const useMenuOptionStore = defineStore({
             },
             { default: () => '组态设计' }
           ),
-        key: 'go-back-home',
+        key: 'go-back-X6design',
         icon: renderIcon(CashSharp)
       },
       {
         label: '大屏设计',
-        key: 'go-back-canvas',
+        key: 'go-back-bigScreen',
         props: {
           style: {
             color: 'red',
@@ -70,7 +70,7 @@ export const useMenuOptionStore = defineStore({
       },
       {
         label: '3D设计',
-        key: 'go-back-canvas',
+        key: 'go-back-lingo',
         props: {
           style: {
             color: 'red',
@@ -82,7 +82,7 @@ export const useMenuOptionStore = defineStore({
 
       {
         label: '说明文档',
-        key: 'go-back-canvas',
+        key: 'go-back-info',
         props: {
           style: {
             color: 'red',
@@ -93,7 +93,7 @@ export const useMenuOptionStore = defineStore({
       },
       {
         label: 'GITHUB',
-        key: 'go-back-canvas',
+        key: 'go-back-git',
         props: {
           style: {
             color: 'red',
@@ -104,7 +104,7 @@ export const useMenuOptionStore = defineStore({
       },
       {
         label: '加入群聊',
-        key: 'go-back-canvas',
+        key: 'go-back-tock',
         props: {
           style: {
             color: 'red',
@@ -115,7 +115,7 @@ export const useMenuOptionStore = defineStore({
       },
       {
         label: '赞赏作者',
-        key: 'go-back-canvas',
+        key: 'go-back-appreciate',
         props: {
           style: {
             color: 'red',
@@ -126,7 +126,7 @@ export const useMenuOptionStore = defineStore({
       },
       {
         label: '切换账号',
-        key: 'go-back-canvas',
+        key: 'go-back-login',
         props: {
           style: {
             color: 'red',
@@ -138,7 +138,7 @@ export const useMenuOptionStore = defineStore({
 
       {
         label: '退出软件',
-        key: 'go-back-canvas',
+        key: 'go-back-logout',
         props: {
           style: {
             color: 'red',

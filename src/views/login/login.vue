@@ -41,8 +41,6 @@ import { Person, LockClosed } from '@vicons/ionicons5'
 import { useRouter } from 'vue-router'
 const Router = useRouter()
 const HandleClick = () => {
-  console.log('111')
-
   Router.push({ name: 'Main' })
 }
 </script>

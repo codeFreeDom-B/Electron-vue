@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-13 17:37:05
+ * @LastEditTime: 2023-11-13 10:52:07
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -31,23 +31,6 @@ export default function () {
         color: '#fafafa'
       },
       ...defaultOptions,
-    //   interacting(cellView) {
-    
-        
-    //     // if (!cellView.cell) return;
-    
-    //     const { cellMoveable } = cellView.cell.getProp();
-    //     console.log( cellView.cell.getProp(),cellMoveable,'cellView.cell');
-    //     // if (typeof cellMoveable != "boolean") return true;
-
-    //     // return {
-    //     //     nodeMovable: cellMoveable,
-    //     //     edgeMovable: cellMoveable,
-    //     //     edgeLabelMovable: cellMoveable,
-    //     //     vertexMovable: cellMoveable,
-    //     //     arrowheadMovable: cellMoveable
-    //     // };
-    // }
     })
     setDefaultGraphListeners(graphRef.value)
     toSetCellDefaultConfig(graphRef.value)
@@ -56,9 +39,6 @@ export default function () {
     dndRef.value = new Dnd({
       target: graphRef.value
     })
-
-
-  
   })
   return {
     graphContainer,

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-13 16:20:38
+ * @LastEditTime: 2023-11-13 11:20:29
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -44,32 +44,30 @@ export function setDefaultGraphListeners(graph: Graph) {
 export function toSetCellDefaultConfig(graph: Graph) {
   // 当added时，添加基础配置
   graph.on("edge:added", ({edge}) => {
-    setCellStoreDataDefaultValue(edge)
+    setCellStoreDataDefaultValue(graph,edge)
   })
   graph.on("node:added", ({node}) => {
-    setCellStoreDataDefaultValue(node)
+    setCellStoreDataDefaultValue(graph,node)
   })
   const { sx, sy } = GraphInstance.scale();
-  console.log(GraphInstance.scale(),GraphInstance.view.background.style.backgroundColor='red',sx,sy,'GraphInstance.scale()');
+  // console.log(GraphInstance.scale(),GraphInstance.view.background.style.backgroundColor='red',sx,sy,'GraphInstance.scale()');
   
   
-  // graph.on('cell:click', ({ cell }) => {
-  //   // 发送选中的消息
-  //   eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
-  //     shape: cell.shape == 'edge' ? cell.shape : 'node',
-  //     node:cell
-  //   })
-  // })
+  graph.on('cell:click', ({ cell }) => {
+    // 发送选中的消息
+    eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
+      shape: cell.shape == 'edge' ? cell.shape : 'node',
+      node:cell
+    })
+  })
 }
 
 
-function setCellStoreDataDefaultValue(cell:Cell) {
+function setCellStoreDataDefaultValue(graph:Graph,cell: Cell) {
+  //这里我想直接创建的时候,直接默认选中就可以了,选中之后去判断是打开路由或者node
   const data = _.cloneDeep(cell.getProp());
-  console.log(cell.isNode(),'setCellStoreDataDefaultValue');
-  
   if (!data.title) {
-    console.log(data,'data');
-  }
-  
-  
+    if (cell.shape == 'edge') return;
+    graph.select(cell)
+  } 
 }

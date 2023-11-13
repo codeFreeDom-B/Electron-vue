@@ -1,5 +1,16 @@
+<!--
+ * @Author: SUN HENG
+ * @Date: 2023-09-08 11:00:55
+ * @LastEditors: SUN HENG && 17669477887
+ * @LastEditTime: 2023-11-13 09:52:28
+ * @FilePath: \Electronvite\src\App.vue
+ * @Description: 
+-->
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route, 'rousadasdte')
 </script>
 
 <template>

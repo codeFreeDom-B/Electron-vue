@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-13 10:58:18
+ * @LastEditTime: 2023-11-15 12:10:38
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -16,7 +16,8 @@
               type="primary"
               :render-icon="item.icon"
               size="large"
-              style="margin-right: 20px"
+              style="margin-right: 20px; user-select: none; -webkit-app-region: no-drag"
+              @click="handleClick(item.id)"
             >
               {{ item.name }}</NButton
             >
@@ -76,8 +77,17 @@ onMounted(() => {
     useSelectNode(cell as Cell)
   })
 })
+const handleClick = (key: string) => {
+  console.log(key, 'key')
+}
 </script>
 <style lang="scss" scoped>
+@keyframes ant-line {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
 .EditPage {
   width: 100%;
   height: 100%;

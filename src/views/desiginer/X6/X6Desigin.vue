@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-13 15:40:01
+ * @LastEditTime: 2023-11-15 13:05:47
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -53,6 +53,13 @@ const handleDragEnter = () => {
       border: 2px dashed rgb(99, 226, 183);
       box-shadow: 0 0 0 0;
     }
+  }
+}
+</style>
+<style>
+@keyframes ant-line {
+  to {
+    stroke-dashoffset: -1000;
   }
 }
 </style>

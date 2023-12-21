@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-14 11:19:08
+ * @LastEditTime: 2023-12-20 09:46:29
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -13,6 +13,8 @@ import defaultOptions from "./defaultOption"
 import { useClipboard } from '@/views/desiginer/plug/clipboard.plug'
 import { useSelection } from '@/views/desiginer/plug/selection.plug'
 import { useHistory } from '@/views/desiginer/plug/history.plug'
+import { useTransform } from "@/views/desiginer/plug/Transform.plug"
+import {useKeyboard} from "@/views/desiginer/plug/Keyboard.plug"
 import { setDefaultGraphListeners,toSetCellDefaultConfig } from '@/views/desiginer/utils'
 
 
@@ -24,7 +26,6 @@ export default function () {
   onMounted(() => {
     const IpcRenderer = useIpcRenderer()
     IpcRenderer.send('window-max')
-    // Window.foo ='1'
     window.GraphInstance = graphRef.value = new Graph({
       container: graphContainer.value,
       background: {
@@ -36,6 +37,9 @@ export default function () {
     toSetCellDefaultConfig(graphRef.value)
     graphRef.value.use(useSelection())
     graphRef.value.use(useHistory())
+    graphRef.value.use(useTransform())
+    graphRef.value.use(useKeyboard())
+    graphRef.value.use(useClipboard(graphRef.value))
     dndRef.value = new Dnd({
       target: graphRef.value
     })

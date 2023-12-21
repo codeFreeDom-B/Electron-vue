@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-13 18:11:18
+ * @LastEditTime: 2023-12-20 11:47:33
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -54,7 +54,16 @@ export function toSetCellDefaultConfig(graph: Graph) {
 
   graph.on('cell:click', ({ cell }) => {
     console.log(cell, 'cell.setPropByPath("title", data.title, { silent: true });')
-
+    const isAsync=false
+    if (cell.data) {
+      console.log('我进来了');
+      
+      const script="console.log(customClickEvent)"
+        
+            return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)(cell.data);
+       
+    
+}
     // 发送选中的消息
     eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
       shape: cell.shape == 'edge' ? cell.shape : 'node',

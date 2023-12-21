@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-15 13:05:47
+ * @LastEditTime: 2023-12-19 20:56:43
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -52,6 +52,9 @@ const handleDragEnter = () => {
     :deep(.x6-widget-selection-box) {
       border: 2px dashed rgb(99, 226, 183);
       box-shadow: 0 0 0 0;
+    }
+    :deep(.x6-widget-transform) {
+      border: 0px;
     }
   }
 }

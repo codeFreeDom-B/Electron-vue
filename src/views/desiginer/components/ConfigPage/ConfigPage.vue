@@ -2,14 +2,14 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 14:39:31
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-13 14:16:06
+ * @LastEditTime: 2023-11-20 15:40:24
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\ConfigPage.vue
  * @Description: 
 -->
 <template>
   <Transition>
     <div class="pageconfig">
-      <component :is="componentType" :cell="cell"></component>
+      <component :is="componentType" :cell="cell" :key="cell?.id"></component>
     </div>
   </Transition>
 </template>

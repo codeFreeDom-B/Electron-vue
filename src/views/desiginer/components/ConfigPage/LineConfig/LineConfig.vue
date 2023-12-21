@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 17:08:02
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-13 17:51:54
+ * @LastEditTime: 2023-11-21 11:44:14
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\LineConfig.vue
  * @Description: 
 -->
@@ -15,7 +15,7 @@
         </NTabPane>
         <NTabPane name="Animation" tab="动画"> 动画 </NTabPane>
         <NTabPane name="DataBind" tab="数据绑定"> 数据绑定 </NTabPane>
-        <NTabPane name="EventBind" tab="事件绑定"> 事件绑定 </NTabPane>
+        <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds /> </NTabPane>
       </NTabs>
     </NCard>
   </div>
@@ -26,6 +26,7 @@ export default { name: 'LineConfig' }
 <script setup lang="ts">
 import type { Cell } from '@antv/x6'
 import BaseConfig from './components/BaseConfig/BaseConfig.vue'
+import EventsBinds from '../../EvnetsBind/EvnetsBind.vue'
 import { onMounted } from 'vue'
 defineProps<{
   cell: Cell

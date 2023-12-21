@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-13 14:51:43
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-13 17:37:18
+ * @LastEditTime: 2023-11-16 09:56:54
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\defaultOption.ts
  * @Description: 
  */
@@ -23,4 +23,5 @@ export default <Partial<Graph.Options>>{
       maxScale: 3.6,
       minScale: 0.27
   },
+  embedding:true
 }

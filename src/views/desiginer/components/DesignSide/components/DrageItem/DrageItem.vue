@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 16:13:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-09-28 17:05:15
+ * @LastEditTime: 2023-12-19 20:32:06
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DrageItem\DrageItem.vue
  * @Description: 
 -->
@@ -40,6 +40,7 @@
 import { reactive } from 'vue'
 import EventEmit from '@/views/desiginer/hooks/useEventMitt'
 import MacBtn from '@/components/ThumBar/ThumBar.vue'
+import { register, getTeleport } from '@antv/x6-vue-shape'
 let props = defineProps({
   dragList: {
     default: () => {},
@@ -49,7 +50,9 @@ let props = defineProps({
 
 const ondragStart = (event: DragEvent, node: any) => {
   console.log(node, props.dragList, 'node')
-
+  if (node.shape.includes('vue')) {
+    register(node)
+  }
   EventEmit.emit('drag', { event, node })
 }
 </script>

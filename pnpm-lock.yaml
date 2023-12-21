@@ -23,6 +23,12 @@ dependencies:
   '@antv/x6-plugin-selection':
     specifier: ^2.2.1
     version: 2.2.1(@antv/x6@2.15.1)
+  '@antv/x6-plugin-transform':
+    specifier: ^2.1.8
+    version: 2.1.8(@antv/x6@2.15.1)
+  '@antv/x6-vue-shape':
+    specifier: ^2.1.1
+    version: 2.1.1(@antv/x6@2.15.1)(vue@3.3.4)
   '@vicons/ionicons5':
     specifier: ^0.12.0
     version: 0.12.0
@@ -50,6 +56,9 @@ dependencies:
   pinia:
     specifier: ^2.1.6
     version: 2.1.6(typescript@5.1.6)(vue@3.3.4)
+  seemly:
+    specifier: ^0.3.6
+    version: 0.3.6
   simple-peer:
     specifier: ^9.11.1
     version: 9.11.1
@@ -215,6 +224,29 @@ packages:
       '@antv/x6': ^2.x
     dependencies:
       '@antv/x6': 2.15.1
+    dev: false
+
+  /@antv/x6-plugin-transform@2.1.8(@antv/x6@2.15.1):
+    resolution: {integrity: sha512-GvJuiJ4BKp0H7+qx3R1I+Vzbw5gXp9+oByXo/WyVxE3urOC7LC5sqnaDfIjyYMN6ROLPYPZraLSeSyYBgMgcDw==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+    dependencies:
+      '@antv/x6': 2.15.1
+    dev: false
+
+  /@antv/x6-vue-shape@2.1.1(@antv/x6@2.15.1)(vue@3.3.4):
+    resolution: {integrity: sha512-XQwKyQmKH1m12tQ7ybh/p3XXe/XKWEa6zihoIb/IQd+w5WyTTosVfgXbn1io3Nb6zXc2R853R6iGe+T1+tWhfg==}
+    peerDependencies:
+      '@antv/x6': ^2.x
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@antv/x6': 2.15.1
+      vue: 3.3.4
+      vue-demi: 0.14.6(vue@3.3.4)
     dev: false
 
   /@antv/x6@2.15.1:
@@ -4383,7 +4415,6 @@ packages:
 
   /seemly@0.3.6:
     resolution: {integrity: sha512-lEV5VB8BUKTo/AfktXJcy+JeXns26ylbMkIUco8CYREsQijuz4mrXres2Q+vMLdwkuLxJdIPQ8IlCIxLYm71Yw==}
-    dev: true
 
   /semver-compare@1.0.0:
     resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}

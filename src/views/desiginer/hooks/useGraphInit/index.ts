@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-12-20 09:46:29
+ * @LastEditTime: 2024-01-05 15:18:09
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -16,10 +16,26 @@ import { useHistory } from '@/views/desiginer/plug/history.plug'
 import { useTransform } from "@/views/desiginer/plug/Transform.plug"
 import {useKeyboard} from "@/views/desiginer/plug/Keyboard.plug"
 import { setDefaultGraphListeners,toSetCellDefaultConfig } from '@/views/desiginer/utils'
-
+import {useNodesDatas} from "@/stores/modules/nodesDatas/nodesDatas"
 
 import { useIpcRenderer } from '@vueuse/electron'
+const NodesDatas=useNodesDatas()
 export default function () {
+  setInterval(() => {
+    fetch("api/nodes")
+    .then((response) => response.json())
+    .then((data) => {
+      NodesDatas.setData(data)
+      const Cells = graphRef.value?.getCells();
+      Cells?.map(node => {
+        if (data.id == node.getData().id) {
+          node.setAttrs({ label: { text: data.value } })
+        }
+      })
+      
+    });
+  },1000)
+
   const graphContainer = ref<HTMLDivElement>()
   const graphRef = shallowRef<Graph>()
   const dndRef = shallowRef<Dnd>()

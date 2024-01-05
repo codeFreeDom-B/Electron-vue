@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-12-20 11:47:33
+ * @LastEditTime: 2024-01-05 14:46:06
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -10,8 +10,10 @@ import type { Cell, Graph } from '@antv/x6'
 import _ from 'lodash'
 import eventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
-
+import {useNodesDatas} from "@/stores/modules/nodesDatas/nodesDatas"
+import {storeToRefs} from "pinia"
 export function setDefaultGraphListeners(graph: Graph) {
+  const NodesDatas=useNodesDatas()
   // 双击创建边
   graph.on('blank:dblclick', ({ e, x, y }) => {
     graph.addEdge({
@@ -40,6 +42,18 @@ export function setDefaultGraphListeners(graph: Graph) {
   graph.on('edge:mouseleave', ({ cell }) => {
     cell.removeTools()
   })
+  graph.on('node:changed', ({ node, options }) => {
+    const { data } = storeToRefs(NodesDatas);
+   
+    
+    if (node.getData() && node.getData()?.id == data.value?.id) {
+      // console.log('我要改变了哈',data.value);
+      node.setAttrs({ label: { text: data.value.value } })
+      console.log(node,'node');
+      // graph.updateItem(node, { label: data.value.value });
+    }
+  })
+  
 }
 export function toSetCellDefaultConfig(graph: Graph) {
   // 当added时，添加基础配置
@@ -57,12 +71,8 @@ export function toSetCellDefaultConfig(graph: Graph) {
     const isAsync=false
     if (cell.data) {
       console.log('我进来了');
-      
       const script="console.log(customClickEvent)"
-        
-            return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)(cell.data);
-       
-    
+      return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)(cell.data);
 }
     // 发送选中的消息
     eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {

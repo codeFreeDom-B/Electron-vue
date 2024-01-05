@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-15 12:10:38
+ * @LastEditTime: 2024-01-05 14:32:33
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -68,7 +68,7 @@ import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
 import EventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { ConfigPage } from './components/ConfigPage'
 import { useEditPageStore } from '@/stores/modules/editPageStore/editPageStore'
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import type { Cell } from '@antv/x6'
 const EditPageStore = useEditPageStore()
 const ActionBar = EditPageStore.getActionBar

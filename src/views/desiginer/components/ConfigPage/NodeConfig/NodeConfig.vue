@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 11:22:43
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-12-20 10:30:30
+ * @LastEditTime: 2024-01-05 10:43:34
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\NodeConfig\NodeConfig.vue
  * @Description: 
 -->
@@ -11,11 +11,13 @@
     <NCard>
       <NTabs default-value="BaseConfig" justify-content="space-evenly" type="line">
         <NTabPane name="BaseConfig" tab="属性">
-          <NScrollbar style="max-height: 100%"> <BaseConfig :cell="cell" /> </NScrollbar>
+          <NScrollbar style="max-height: 100%"> <BaseConfig :cell="props.cell" /> </NScrollbar>
         </NTabPane>
         <NTabPane name="Animation" tab="动画"> 动画 </NTabPane>
-        <NTabPane name="DataBind" tab="数据绑定"> 数据绑定 </NTabPane>
-        <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds :cell="cell" /> </NTabPane>
+        <NTabPane name="DataBind" tab="数据绑定">
+          <NButton @click="handleClick">绑定</NButton>
+        </NTabPane>
+        <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds :cell="props.cell" /> </NTabPane>
       </NTabs>
     </NCard>
   </div>
@@ -28,9 +30,15 @@ import type { Cell } from '@antv/x6'
 import BaseConfig from './components/BaseConfig/BaseConfig.vue'
 import EventsBinds from '../../EvnetsBind/EvnetsBind.vue'
 import { onMounted } from 'vue'
-defineProps<{
+import type { NButton } from 'naive-ui'
+let props = defineProps<{
   cell: Cell
 }>()
+const handleClick = () => {
+  props.cell.setData({
+    id: 'sun'
+  })
+}
 </script>
 <style scoped lang="scss">
 .config {

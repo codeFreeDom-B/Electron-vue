@@ -33,7 +33,8 @@ electron.app.whenReady().then(() => {
     resizable: false,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      webSecurity: false
     }
   });
   electron.ipcMain.on("save-file", function(event, data) {
@@ -56,9 +57,9 @@ electron.app.whenReady().then(() => {
   electron.ipcMain.on("window-max", function() {
     win.maximize();
   });
+  win.webContents.openDevTools();
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL);
-    win.webContents.openDevTools();
   } else {
     win.loadFile(path.join(__dirname, "../dist/index.html"));
   }

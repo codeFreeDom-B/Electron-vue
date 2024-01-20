@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-05 15:18:09
+ * @LastEditTime: 2024-01-10 13:30:43
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -19,22 +19,15 @@ import { setDefaultGraphListeners,toSetCellDefaultConfig } from '@/views/desigin
 import {useNodesDatas} from "@/stores/modules/nodesDatas/nodesDatas"
 
 import { useIpcRenderer } from '@vueuse/electron'
+import axios from "axios"
+// axios.defaults.baseURL = 'http://172.10.10.166:3000';
 const NodesDatas=useNodesDatas()
 export default function () {
-  setInterval(() => {
-    fetch("api/nodes")
-    .then((response) => response.json())
-    .then((data) => {
-      NodesDatas.setData(data)
-      const Cells = graphRef.value?.getCells();
-      Cells?.map(node => {
-        if (data.id == node.getData().id) {
-          node.setAttrs({ label: { text: data.value } })
-        }
-      })
-      
-    });
-  },1000)
+  // setInterval(() => {
+  //   axios.get('/nodes').then(res => {
+  //     console.log(res,'api/nodes');
+  //   })
+  // },1000)
 
   const graphContainer = ref<HTMLDivElement>()
   const graphRef = shallowRef<Graph>()

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-05 14:46:06
+ * @LastEditTime: 2024-01-18 12:00:20
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -42,17 +42,17 @@ export function setDefaultGraphListeners(graph: Graph) {
   graph.on('edge:mouseleave', ({ cell }) => {
     cell.removeTools()
   })
-  graph.on('node:changed', ({ node, options }) => {
-    const { data } = storeToRefs(NodesDatas);
+  // graph.on('node:changed', ({ node, options }) => {
+  //   const { data } = storeToRefs(NodesDatas);
    
     
-    if (node.getData() && node.getData()?.id == data.value?.id) {
-      // console.log('我要改变了哈',data.value);
-      node.setAttrs({ label: { text: data.value.value } })
-      console.log(node,'node');
-      // graph.updateItem(node, { label: data.value.value });
-    }
-  })
+  //   if (node.getData() && node.getData()?.id == data.value?.id) {
+  //     // console.log('我要改变了哈',data.value);
+  //     node.setAttrs({ label: { text: data.value.value } })
+  //     console.log(node,'node');
+  //     // graph.updateItem(node, { label: data.value.value });
+  //   }
+  // })
   
 }
 export function toSetCellDefaultConfig(graph: Graph) {
@@ -69,10 +69,10 @@ export function toSetCellDefaultConfig(graph: Graph) {
   graph.on('cell:click', ({ cell }) => {
     console.log(cell, 'cell.setPropByPath("title", data.title, { silent: true });')
     const isAsync=false
-    if (cell.data) {
-      console.log('我进来了');
+    if (cell.data?.bindEvent=='click') {
+      
       const script="console.log(customClickEvent)"
-      return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)(cell.data);
+      return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)('我是执行参数打印的结果');
 }
     // 发送选中的消息
     eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 11:22:43
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-05 10:43:34
+ * @LastEditTime: 2024-01-18 11:59:54
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\NodeConfig\NodeConfig.vue
  * @Description: 
 -->
@@ -36,7 +36,7 @@ let props = defineProps<{
 }>()
 const handleClick = () => {
   props.cell.setData({
-    id: 'sun'
+    bindEvent: 'click'
   })
 }
 </script>

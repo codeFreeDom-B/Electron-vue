@@ -2,12 +2,11 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-05 15:28:23
- * @FilePath: \Electronvite\README.md
- * @Description:
+ * @LastEditTime: 2024-01-23 11:44:49
+ * @FilePath: \ruoyi-uic:\Users\Administrator\Desktop\EclectronSystem\Electronvite\README.md
+ * @Description: 
 -->
-
-# Electron-Designer
+# vue-Electron-X6
 
 This template should help get you started developing with Vue 3 in Vite.
 

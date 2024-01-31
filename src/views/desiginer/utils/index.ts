@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 14:24:09
+ * @LastEditTime: 2024-01-18 12:00:20
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -10,15 +10,15 @@ import type { Cell, Graph } from '@antv/x6'
 import _ from 'lodash'
 import eventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
-import { useNodesDatas } from '@/stores/modules/nodesDatas/nodesDatas'
-import { storeToRefs } from 'pinia'
+import {useNodesDatas} from "@/stores/modules/nodesDatas/nodesDatas"
+import {storeToRefs} from "pinia"
 export function setDefaultGraphListeners(graph: Graph) {
-  const NodesDatas = useNodesDatas()
+  const NodesDatas=useNodesDatas()
   // 双击创建边
   graph.on('blank:dblclick', ({ e, x, y }) => {
     graph.addEdge({
       source: [x, y],
-      target: [x, y]
+      target: [x, y],
     })
   })
 
@@ -44,7 +44,8 @@ export function setDefaultGraphListeners(graph: Graph) {
   })
   // graph.on('node:changed', ({ node, options }) => {
   //   const { data } = storeToRefs(NodesDatas);
-
+   
+    
   //   if (node.getData() && node.getData()?.id == data.value?.id) {
   //     // console.log('我要改变了哈',data.value);
   //     node.setAttrs({ label: { text: data.value.value } })
@@ -52,6 +53,7 @@ export function setDefaultGraphListeners(graph: Graph) {
   //     // graph.updateItem(node, { label: data.value.value });
   //   }
   // })
+  
 }
 export function toSetCellDefaultConfig(graph: Graph) {
   // 当added时，添加基础配置
@@ -66,14 +68,12 @@ export function toSetCellDefaultConfig(graph: Graph) {
 
   graph.on('cell:click', ({ cell }) => {
     console.log(cell, 'cell.setPropByPath("title", data.title, { silent: true });')
-    const isAsync = false
-    if (cell.data?.bindEvent == 'click') {
-      const script = 'console.log(customClickEvent)'
-      return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)(
-        'customClickEvent',
-        script
-      )('我是执行参数打印的结果')
-    }
+    const isAsync=false
+    if (cell.data?.bindEvent=='click') {
+      
+      const script="console.log(customClickEvent)"
+      return new (isAsync ? Object.getPrototypeOf(async function () {}).constructor : Function)('customClickEvent',script)('我是执行参数打印的结果');
+}
     // 发送选中的消息
     eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
       shape: cell.shape == 'edge' ? cell.shape : 'node',

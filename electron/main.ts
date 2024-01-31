@@ -2,7 +2,7 @@
  * @Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:35:35
+ * @LastEditTime: 2024-01-10 13:30:10
  * @FilePath: \Electronvite\electron\main.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,7 +22,7 @@ app.whenReady().then(() => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      webSecurity: false
+      webSecurity:false
     }
   })
   ipcMain.on('save-file', function (event, data) {
@@ -46,13 +46,11 @@ app.whenReady().then(() => {
   ipcMain.on('window-max', function () {
     win.maximize()
   })
-  ipcMain.on('window-restore', function () {
-    win.unmaximize()
-  })
 
   win.webContents.openDevTools()
   if (process.env.VITE_DEV_SERVER_URL) {
     win.loadURL(process.env.VITE_DEV_SERVER_URL)
+    
   } else {
     win.loadFile(path.join(__dirname, '../dist/index.html'))
   }

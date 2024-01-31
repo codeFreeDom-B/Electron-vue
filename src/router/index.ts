@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:07:29
+ * @LastEditTime: 2023-11-13 10:47:09
  * @FilePath: \Electronvite\src\router\index.ts
  * @Description:
  */
@@ -13,12 +13,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'login',
-      component: () => import('@/views/login/index.vue')
-    },
-    {
-      path: '/main',
-      name: 'Main',
       component: LayOut,
       redirect: '/workbenches',
       children: [
@@ -33,7 +27,13 @@ const router = createRouter({
           component: () => import('@/views/desiginer/X6/X6Desigin.vue')
         }
       ]
-    }
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/login/index.vue')
+    },
+
     // {
     //   path: '/main',
     //   name: 'Main',

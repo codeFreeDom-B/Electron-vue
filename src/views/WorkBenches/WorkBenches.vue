@@ -2,8 +2,8 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 10:21:09
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:13:56
- * @FilePath: \Electronvite\src\views\WorkBenches\WorkBenches.vue
+ * @LastEditTime: 2023-12-19 11:44:19
+ * @FilePath: \Electronvite\src\views\workbenches\workbenches.vue
  * @Description: 
 -->
 <template>
@@ -23,21 +23,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
 import { FlashOutline } from '@vicons/ionicons5'
-import BaseApi from '@/apis/login'
-onMounted(() => {
-  BaseApi.getUserInfo({}).then((res) => {
-    console.log(res, 'BaseApi')
-  })
-})
 </script>
 <style lang="scss" scoped>
 .benches {
   width: 100%;
   height: 100%;
-  // user-select: none;
-  // -webkit-app-region: no-drag;
+  user-select: none;
+  -webkit-app-region: no-drag;
 }
 .header {
   display: flex;
@@ -55,8 +48,6 @@ onMounted(() => {
   .right-search {
     width: 300px;
     margin-right: 100px;
-    user-select: none;
-    -webkit-app-region: no-drag;
   }
 }
 </style>

@@ -2,17 +2,15 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 14:39:55
+ * @LastEditTime: 2023-11-13 09:52:28
  * @FilePath: \Electronvite\src\App.vue
  * @Description: 
 -->
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
-import { MessagePlugin } from '@/views/components/plugins/MessagePlugin/index'
-import { onMounted } from 'vue'
-onMounted(() => {
-  console.log(process.env, import.meta.env, '环境')
-})
+import { useRoute } from 'vue-router'
+const route = useRoute()
+console.log(route, 'rousadasdte')
 </script>
 
 <template>
@@ -32,11 +30,6 @@ onMounted(() => {
     /> -->
     <NConfigProvider class="config" :theme="darkTheme">
       <RouterView></RouterView>
-
-      <NMessageProvider>
-        <MessagePlugin></MessagePlugin>
-        <slot></slot>
-      </NMessageProvider>
     </NConfigProvider>
   </div>
 </template>

@@ -6,7 +6,7 @@
  * @FilePath: \ruoyi-uic:\Users\Administrator\Desktop\EclectronSystem\Electronvite\README.md
  * @Description: 
 -->
-# vue-Electron-X6
+# vue-Electron
 
 This template should help get you started developing with Vue 3 in Vite.
 

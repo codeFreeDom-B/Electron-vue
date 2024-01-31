@@ -2,13 +2,13 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 16:05:16
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-15 12:11:52
+ * @LastEditTime: 2024-01-31 15:21:34
  * @FilePath: \Electronvite\src\stores\modules\editPageStore\editPageStore.ts
- * @Description: 
+ * @Description:
  */
 import { defineStore } from 'pinia'
 
-import { type EditPageType,ActionBar,type ActionBarType } from './editPageStore.d'
+import { type EditPageType, ActionBar, ActionBarName, type ActionBarType } from './editPageStore.d'
 import { renderIcon } from '@/utils/utils'
 import { LogoGooglePlaystore, Navigate } from '@vicons/ionicons5'
 
@@ -18,25 +18,30 @@ export const useEditPageStore = defineStore({
     Tools: [],
     ActionBtn: [
       {
-        id:ActionBar['PREVIEW'],
-        name: '预览',
+        id: ActionBar['PREVIEW'],
+        name: ActionBarName['PREVIEW'],
         icon: renderIcon(LogoGooglePlaystore)
       },
       {
-        id:ActionBar['PUBLISH'],
-        name: '发布',
+        id: ActionBar['PUBLISH'],
+        name: ActionBarName['PUBLISH'],
         icon: renderIcon(Navigate)
       },
       {
-        id:ActionBar['SAVE'],
-        name: '保存',
+        id: ActionBar['SAVE'],
+        name: ActionBarName['SAVE'],
+        icon: renderIcon(Navigate)
+      },
+      {
+        id: ActionBar['HOME'],
+        name: ActionBarName['HOME'],
         icon: renderIcon(Navigate)
       }
     ]
   }),
   getters: {
-    getActionBar():ActionBarType[] {
-     return this.ActionBtn
+    getActionBar(): ActionBarType[] {
+      return this.ActionBtn
+    }
   }
-}
 })

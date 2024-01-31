@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-09 12:07:22
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-08 16:57:39
+ * @LastEditTime: 2024-01-31 15:37:37
  * @FilePath: \Electronvite\src\components\Layout\components\LayoutSide\LayOutSide.vue
  * @Description: 
 -->
@@ -36,6 +36,8 @@ const menuOptions = menuOptionsStore.getMenuOptions
 let isTrigger: Ref<boolean | string> = ref('bar')
 const Router = useRouter()
 Router.beforeEach((to, from, next) => {
+  console.log('我走了')
+
   isTrigger.value = false
   next()
 })

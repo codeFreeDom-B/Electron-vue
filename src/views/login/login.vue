@@ -10,7 +10,7 @@
       <div class="login_title">欢迎登录组态设计平台</div>
       <div class="login_params">
         <div class="user">
-          <n-input placeholder="请输入账号名称" round>
+          <n-input placeholder="请输入账号名称" round v-model:value="username">
             <template #prefix>
               <n-icon :component="Person" />
             </template>
@@ -19,9 +19,10 @@
         <div class="pwd">
           <n-input
             type="password"
+            v-model:value="password"
             show-password-on="mousedown"
             placeholder="请输入密码"
-            :maxlength="8"
+            :maxlength="16"
             round
           >
             <template #prefix>
@@ -37,12 +38,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { Person, LockClosed } from '@vicons/ionicons5'
-import { useRouter } from 'vue-router'
-const Router = useRouter()
-const HandleClick = () => {
-  Router.push({ name: 'Main' })
-}
+import { useLogin } from './hooks/useLogin.hook'
+const { LockClosed, HandleClick, password, Person, username } = useLogin()
 </script>
 <style lang="scss" scoped>
 .login {

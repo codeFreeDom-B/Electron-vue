@@ -2,30 +2,32 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-06 10:12:06
+ * @LastEditTime: 2024-02-06 09:12:23
  * @FilePath: \Electronvite\vite.config.ts
- * @Description: 
+ * @Description:
  */
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import electron from "vite-plugin-electron"//让vite支持electron
-
+import electron from 'vite-plugin-electron' //让vite支持electron
 
 export default defineConfig({
-  plugins: [vue(), vueJsx(), electron({
-    entry: "electron/main.ts",//配置入口文件
-    onstart: options => {
-      options.startup(['.', '--no-sandbox'])
-    }
-  })
+  plugins: [
+    vue(),
+    vueJsx(),
+    electron({
+      entry: 'electron/main.ts', //配置入口文件
+      onstart: (options) => {
+        options.startup(['.', '--no-sandbox'])
+      }
+    })
   ],
   // optimizeDeps: {
   //   include: ['simple-peer']
   // },
-  
+
   server: {
     // host:'0.0.0.0' ,//ip地址
     // port: 80, // 设置服务启动端口号
@@ -37,12 +39,12 @@ export default defineConfig({
     //     changeOrigin: true
     //   }
     // }
-   
+
     proxy: {
       '/api': {
         target: 'http://172.10.10.166:3000',
         changeOrigin: true, // 允许跨域
-        secure: false,  //忽略安全证书   
+        secure: false, //忽略安全证书
         rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite
       }
     }
@@ -51,7 +53,5 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-  
+  }
 })
-

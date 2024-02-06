@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-13 10:47:09
+ * @LastEditTime: 2024-02-06 09:12:01
  * @FilePath: \Electronvite\src\router\index.ts
  * @Description:
  */
@@ -11,6 +11,12 @@ import { LayOut } from '@/components'
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'login',
+
+      component: () => import('@/views/login/index.vue')
+    },
     {
       path: '/',
       component: LayOut,
@@ -27,12 +33,7 @@ const router = createRouter({
           component: () => import('@/views/desiginer/X6/X6Desigin.vue')
         }
       ]
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import('@/views/login/index.vue')
-    },
+    }
 
     // {
     //   path: '/main',

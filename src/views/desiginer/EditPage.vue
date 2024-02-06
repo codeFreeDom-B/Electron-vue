@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:33:49
+ * @LastEditTime: 2024-02-06 16:09:31
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -69,7 +69,7 @@ import EventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { ConfigPage } from './components/ConfigPage'
 import { useEditPageStore } from '@/stores/modules/editPageStore/editPageStore'
 import { onMounted, computed } from 'vue'
-import type { Cell } from '@antv/x6'
+import { Graph, type Cell } from '@antv/x6'
 import { useRouter } from 'vue-router'
 import { useIpcRenderer } from '@vueuse/electron'
 const IpcRenderer = useIpcRenderer()
@@ -83,7 +83,14 @@ onMounted(() => {
   })
 })
 const handleClick = (key: number) => {
-  if (key == 3) {
+  if (key == 2) {
+    GraphInstance.toPNG(
+      (res: any) => {
+        console.log(res, 'toPNG')
+      },
+      { width: 260, height: 180, backgroundColor: '#333' }
+    )
+  } else if (key == 3) {
     router.push({
       name: 'Main'
     })

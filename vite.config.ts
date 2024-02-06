@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-06 10:12:06
+ * @LastEditTime: 2024-02-06 15:51:15
  * @FilePath: \Electronvite\vite.config.ts
  * @Description:
  */
@@ -24,6 +24,7 @@ export default defineConfig({
       }
     })
   ],
+
   // optimizeDeps: {
   //   include: ['simple-peer']
   // },
@@ -42,7 +43,7 @@ export default defineConfig({
 
     proxy: {
       '/api': {
-        target: 'http://172.10.10.166:3000',
+        target: 'https://6e874w4071.zicp.fun',
         changeOrigin: true, // 允许跨域
         secure: false, //忽略安全证书
         rewrite: (path) => path.replace(/^\/api/, '') // 不可以省略rewrite

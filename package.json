@@ -16,6 +16,7 @@
     "@antv/x6": "^2.15.1",
     "@antv/x6-plugin-clipboard": "^2.1.6",
     "@antv/x6-plugin-dnd": "^2.1.1",
+    "@antv/x6-plugin-export": "^2.1.6",
     "@antv/x6-plugin-history": "^2.2.4",
     "@antv/x6-plugin-keyboard": "^2.2.1",
     "@antv/x6-plugin-selection": "^2.2.1",

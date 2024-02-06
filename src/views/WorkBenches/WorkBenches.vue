@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 10:21:09
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:13:56
+ * @LastEditTime: 2024-02-06 16:00:50
  * @FilePath: \Electronvite\src\views\WorkBenches\WorkBenches.vue
  * @Description: 
 -->
@@ -20,17 +20,30 @@
         </NInput>
       </div>
     </div>
+    <div class="sourcelist">
+      <div class="title">组态精选</div>
+      <div class="source-itme">
+        <div class="item" v-for="item in CaseList" :key="item.id">
+          <NCard>
+            <div class="item-img">
+              <NImage width="260" :src="item.backgroundUrl" />
+            </div>
+            <template #action>
+              <div class="item-action">
+                <div>{{ item.name }}</div>
+                <div><NBadge :value="1" dot type="success" processing /></div>
+              </div>
+            </template>
+          </NCard>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
-import { FlashOutline } from '@vicons/ionicons5'
-import BaseApi from '@/apis/login'
-onMounted(() => {
-  BaseApi.getUserInfo({}).then((res) => {
-    console.log(res, 'BaseApi')
-  })
-})
+import { NImage } from 'naive-ui'
+import { getCaseData } from './hooks.ts'
+const { CaseList } = getCaseData()
 </script>
 <style lang="scss" scoped>
 .benches {
@@ -57,6 +70,37 @@ onMounted(() => {
     margin-right: 100px;
     user-select: none;
     -webkit-app-region: no-drag;
+  }
+}
+.sourcelist {
+  width: 100%;
+  height: calc(100% - 75px);
+  .title {
+    font-size: 22px;
+    color: #5acea7;
+    margin-left: 50px;
+    font-weight: 500;
+  }
+  .source-itme {
+    width: 90%;
+    height: calc(100% - 40px);
+    margin: 0 auto;
+    display: flex;
+    .item {
+      width: 320px;
+      height: 200px;
+      margin-left: 20px;
+      margin-top: 20px;
+      &-img {
+        width: 260px;
+        height: 180px;
+        margin: 0 auto;
+      }
+      .item-action {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
   }
 }
 </style>

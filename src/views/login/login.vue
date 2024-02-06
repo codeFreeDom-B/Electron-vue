@@ -38,6 +38,7 @@
   </div>
 </template>
 <script setup lang="ts">
+// @ts-ignore
 import { useLogin } from './hooks/useLogin.hook'
 const { LockClosed, HandleClick, password, Person, username } = useLogin()
 </script>

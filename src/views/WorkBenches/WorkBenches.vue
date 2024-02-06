@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 10:21:09
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:00:50
+ * @LastEditTime: 2024-02-06 16:47:15
  * @FilePath: \Electronvite\src\views\WorkBenches\WorkBenches.vue
  * @Description: 
 -->
@@ -42,8 +42,9 @@
 </template>
 <script lang="ts" setup>
 import { NImage } from 'naive-ui'
+// @ts-ignore
 import { getCaseData } from './hooks.ts'
-const { CaseList } = getCaseData()
+const { CaseList, FlashOutline } = getCaseData()
 </script>
 <style lang="scss" scoped>
 .benches {

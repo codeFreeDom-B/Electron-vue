@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:23:46
+ * @LastEditTime: 2024-02-06 16:47:01
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -89,7 +89,7 @@ const handleClick = (key: number) => {
       (res: any) => {
         console.log(res, 'toPNG')
       },
-      { width: 260, height: 180, backgroundColor: '#333' }
+      { width: 260, height: 180, backgroundColor: '#000' }
     )
   } else if (key == 3) {
     router.push({

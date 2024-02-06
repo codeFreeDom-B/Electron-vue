@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:09:31
+ * @LastEditTime: 2024-02-06 16:23:46
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -84,6 +84,7 @@ onMounted(() => {
 })
 const handleClick = (key: number) => {
   if (key == 2) {
+    // @ts-ignore
     GraphInstance.toPNG(
       (res: any) => {
         console.log(res, 'toPNG')

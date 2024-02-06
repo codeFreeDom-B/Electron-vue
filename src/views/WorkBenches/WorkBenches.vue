@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 10:21:09
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:47:15
+ * @LastEditTime: 2024-02-06 17:14:22
  * @FilePath: \Electronvite\src\views\WorkBenches\WorkBenches.vue
  * @Description: 
 -->
@@ -31,7 +31,38 @@
             <template #action>
               <div class="item-action">
                 <div>{{ item.name }}</div>
-                <div><NBadge :value="1" dot type="success" processing /></div>
+                <div>
+                  <NBadge :value="1" dot :type="item.isPublish ? 'success' : 'error'" processing />
+                  {{ ActionStatus(item.isPublish) }}
+                </div>
+                <div>
+                  <n-tooltip placement="bottom" trigger="hover">
+                    <template #trigger>
+                      <n-button>
+                        <template #icon>
+                          <n-icon :component="HammerOutline" />
+                        </template>
+                      </n-button>
+                    </template>
+                    <span> 编辑 </span>
+                  </n-tooltip>
+                </div>
+                <div>
+                  <n-tooltip placement="bottom" trigger="hover">
+                    <template #trigger>
+                      <n-button>
+                        <template #icon>
+                          <n-icon :component="Flower" />
+                        </template>
+                      </n-button>
+                    </template>
+                    <div class="activeMore">
+                      <div><n-button quaternary> 预览 </n-button></div>
+                      <div><n-button quaternary> 发布 </n-button></div>
+                      <div><n-button quaternary> 删除 </n-button></div>
+                    </div>
+                  </n-tooltip>
+                </div>
               </div>
             </template>
           </NCard>
@@ -44,7 +75,7 @@
 import { NImage } from 'naive-ui'
 // @ts-ignore
 import { getCaseData } from './hooks.ts'
-const { CaseList, FlashOutline } = getCaseData()
+const { CaseList, ActionStatus, FlashOutline, HammerOutline, Flower } = getCaseData()
 </script>
 <style lang="scss" scoped>
 .benches {
@@ -100,6 +131,14 @@ const { CaseList, FlashOutline } = getCaseData()
       .item-action {
         display: flex;
         justify-content: space-between;
+        height: 100%;
+        align-items: center;
+        user-select: none;
+        -webkit-app-region: no-drag;
+        .activeMore {
+          user-select: none;
+          -webkit-app-region: no-drag;
+        }
       }
     }
   }

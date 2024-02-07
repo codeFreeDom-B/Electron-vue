@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 15:35:23
+ * @LastEditTime: 2024-02-07 09:49:47
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -18,18 +18,10 @@ import { useKeyboard } from '@/views/desiginer/plug/Keyboard.plug'
 import { useExport } from '@/views/desiginer/plug/export.plug'
 import { setDefaultGraphListeners, toSetCellDefaultConfig } from '@/views/desiginer/utils'
 import { useNodesDatas } from '@/stores/modules/nodesDatas/nodesDatas'
-
 import { useIpcRenderer } from '@vueuse/electron'
-import axios from 'axios'
-// axios.defaults.baseURL = 'http://172.10.10.166:3000';
+
 const NodesDatas = useNodesDatas()
 export default function () {
-  // setInterval(() => {
-  //   axios.get('/nodes').then(res => {
-  //     console.log(res,'api/nodes');
-  //   })
-  // },1000)
-
   const graphContainer = ref<HTMLDivElement>()
   const graphRef = shallowRef<Graph>()
   const dndRef = shallowRef<Dnd>()

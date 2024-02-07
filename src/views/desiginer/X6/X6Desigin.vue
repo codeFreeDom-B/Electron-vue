@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-12-19 20:56:43
+ * @LastEditTime: 2024-02-07 11:16:35
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -25,15 +25,22 @@ import useGraphInit from '../hooks/useGraphInit'
 import eventEmitter from '../hooks/useEventMitt'
 import WorkSpace from '../components/DesignGraph/DesignGraph.vue'
 import { nextTick, onMounted } from 'vue'
+
+import { useRoute } from 'vue-router'
+
 const { dndRef, graphRef, graphContainer } = useGraphInit()
+const route = useRoute()
 onMounted(() => {
-  nextTick().then(() => {
+  nextTick().then(async () => {
+    // @ts-ignore
+
     eventEmitter.on('drag', (val) => {
       let { node, event } = val
       dndRef.value?.start(dndRef.value.draggingGraph.createNode(node), event)
     })
   })
 })
+
 const handleDragOver = (e: Event) => {
   e.preventDefault()
 }

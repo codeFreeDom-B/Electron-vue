@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 10:21:09
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 17:14:22
+ * @LastEditTime: 2024-02-07 09:36:39
  * @FilePath: \Electronvite\src\views\WorkBenches\WorkBenches.vue
  * @Description: 
 -->
@@ -32,13 +32,18 @@
               <div class="item-action">
                 <div>{{ item.name }}</div>
                 <div>
-                  <NBadge :value="1" dot :type="item.isPublish ? 'success' : 'error'" processing />
+                  <NBadge
+                    :value="100"
+                    dot
+                    :type="item.isPublish ? 'success' : 'warning'"
+                    processing
+                  />
                   {{ ActionStatus(item.isPublish) }}
                 </div>
                 <div>
                   <n-tooltip placement="bottom" trigger="hover">
                     <template #trigger>
-                      <n-button>
+                      <n-button @click="handleEdit(item)">
                         <template #icon>
                           <n-icon :component="HammerOutline" />
                         </template>
@@ -75,7 +80,7 @@
 import { NImage } from 'naive-ui'
 // @ts-ignore
 import { getCaseData } from './hooks.ts'
-const { CaseList, ActionStatus, FlashOutline, HammerOutline, Flower } = getCaseData()
+const { CaseList, ActionStatus, FlashOutline, handleEdit, HammerOutline, Flower } = getCaseData()
 </script>
 <style lang="scss" scoped>
 .benches {

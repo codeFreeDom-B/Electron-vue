@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-06 16:47:01
+ * @LastEditTime: 2024-02-07 13:15:18
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -70,26 +70,49 @@ import { ConfigPage } from './components/ConfigPage'
 import { useEditPageStore } from '@/stores/modules/editPageStore/editPageStore'
 import { onMounted, computed } from 'vue'
 import { Graph, type Cell } from '@antv/x6'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useIpcRenderer } from '@vueuse/electron'
+import { setGraphConfig } from './hooks/setGraphConfig'
+import { getTemplateData } from './hooks/getTemplateData'
 const IpcRenderer = useIpcRenderer()
-
 const EditPageStore = useEditPageStore()
 const ActionBar = EditPageStore.getActionBar
 const router = useRouter()
-onMounted(() => {
+const route = useRoute()
+let Template = null
+onMounted(async () => {
   EventEmitter.on(EventEmitterEnum.CELL_SELECT, (cell) => {
     useSelectNode(cell as Cell)
   })
+  Template = await getTemplateData(route.query!.id)
+  let Config = JSON.parse(Template.data.data.InstanceItem.GraphConfig)
+  GraphInstance?.fromJSON(Config)
 })
-const handleClick = (key: number) => {
+
+const handleClick = async (key: number) => {
   if (key == 2) {
     // @ts-ignore
     GraphInstance.toPNG(
-      (res: any) => {
-        console.log(res, 'toPNG')
+      (res: string) => {
+        let GraphConfig = GraphInstance.toJSON()
+        let JSONconfig = JSON.stringify(GraphConfig)
+        // @ts-ignore
+        setGraphConfig(Template.data.data.InstanceItem.id, {
+          thumbnail: res,
+          GraphConfig: JSONconfig
+        })
+          .then((res) => {
+            window.$message.success('保存成功')
+          })
+          .catch((err) => {
+            window.$message.success('保存失败')
+          })
       },
-      { width: 260, height: 180, backgroundColor: '#000' }
+      {
+        width: 260,
+        height: 180,
+        backgroundColor: '#000'
+      }
     )
   } else if (key == 3) {
     router.push({

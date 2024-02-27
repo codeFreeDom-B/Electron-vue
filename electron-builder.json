@@ -29,7 +29,7 @@
     "uninstallDisplayName": "${productName}${version}",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "SHom",
+    "shortcutName": "SHOM",
     "deleteAppDataOnUninstall": false,
     "runAfterFinish": true,
     "menuCategory": false

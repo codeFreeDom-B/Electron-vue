@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-27 17:24:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-27 18:38:11
+ * @LastEditTime: 2024-02-28 17:06:33
  * @FilePath: \Electronvite\src\views\desiginer\hooks\enrollTemplateVue.ts
  * @Description:
  */
@@ -13,7 +13,8 @@ const modulesFiles = import.meta.glob('../../../node-config/graphics/built-in/*/
   eager: true
 })
 
-export default async function loadAndRegisterComponents(Graph, Nodes) {
+// 渲染节点
+export async function loadAndRegisterComponents(Graph, Nodes) {
   console.log(modulesFiles, 'modulesFiles')
   const modules = await Promise.all(Object.values(modulesFiles))
 
@@ -23,7 +24,7 @@ export default async function loadAndRegisterComponents(Graph, Nodes) {
       for (const module of modules) {
         // 暂时先写死,明天在搞
         // @ts-ignore
-        const config = module?.vueCharts || null // 假设每个模块都导出了config属性
+        const config = module[node?.nodeSign] || null // 假设每个模块都导出了config属性
         console.log(config, 'config2131')
 
         if (config) {
@@ -32,4 +33,11 @@ export default async function loadAndRegisterComponents(Graph, Nodes) {
       }
     }
   })
+}
+// 渲染画布配置
+export async function loadAndGraphOptions(Graph, config) {
+  console.log(config, 'config')
+
+  //目前先直接渲染吧,等有空在搞
+  Graph.drawBackground(config.background)
 }

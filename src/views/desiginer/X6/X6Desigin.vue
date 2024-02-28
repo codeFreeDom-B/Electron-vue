@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-27 17:56:56
+ * @LastEditTime: 2024-02-28 16:47:11
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -32,7 +32,6 @@ const route = useRoute()
 onMounted(() => {
   nextTick().then(async () => {
     // @ts-ignore
-
     eventEmitter.on('drag', (val) => {
       let { node, event } = val
       dndRef.value?.start(dndRef.value.draggingGraph.createNode(node), event)

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-27 17:57:25
+ * @LastEditTime: 2024-02-28 17:14:02
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -74,7 +74,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useIpcRenderer } from '@vueuse/electron'
 import { setGraphConfig } from './hooks/setGraphConfig'
 import { getTemplateData } from './hooks/getTemplateData'
-import loadAndRegisterComponents from './hooks/enrollTemplateVue'
+import { loadAndRegisterComponents, loadAndGraphOptions } from './hooks/enrollTemplateVue'
 const IpcRenderer = useIpcRenderer()
 const EditPageStore = useEditPageStore()
 const ActionBar = EditPageStore.getActionBar
@@ -85,9 +85,12 @@ onMounted(async () => {
   EventEmitter.on(EventEmitterEnum.CELL_SELECT, (cell) => {
     useSelectNode(cell as Cell)
   })
+  // @ts-ignore
   Template = await getTemplateData(route.query!.id)
-  let Config = JSON.parse(Template.data.data.InstanceItem.GraphConfig)
+  let Config = JSON.parse(Template.data.InstanceItem.GraphConfig)
+  let Options = JSON.parse(Template.data.InstanceItem.GraphOption)
   await loadAndRegisterComponents(GraphInstance, Config.cells)
+  await loadAndGraphOptions(GraphInstance, Options)
   // Config.cells
 
   GraphInstance?.fromJSON(Config)
@@ -100,9 +103,15 @@ const handleClick = async (key: number) => {
       (res: string) => {
         let GraphConfig = GraphInstance.toJSON()
         let JSONconfig = JSON.stringify(GraphConfig)
-        console.log(JSONconfig, 'JSONconfig')
-        // @ts-ignore
-        setGraphConfig(Template.data.data.InstanceItem.id, {
+        console.log(
+          window.GraphInstance.background.options,
+          'window.GraphInstance.background.options'
+        )
+
+        let GraphOption = JSON.stringify(window.GraphInstance.background.options)
+
+        setGraphConfig(Template.data.InstanceItem.id, {
+          GraphOption,
           thumbnail: res,
           GraphConfig: JSONconfig
         })

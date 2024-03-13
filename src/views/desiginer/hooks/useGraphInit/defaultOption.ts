@@ -2,11 +2,11 @@
  * @Author: SUN HENG
  * @Date: 2023-10-13 14:51:43
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-16 09:56:54
+ * @LastEditTime: 2024-03-13 14:20:25
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\defaultOption.ts
- * @Description: 
+ * @Description:
  */
-import type {Graph} from "@antv/x6"
+import type { Graph } from '@antv/x6'
 export default <Partial<Graph.Options>>{
   autoResize: true,
   async: true,
@@ -14,14 +14,15 @@ export default <Partial<Graph.Options>>{
   height: 1080,
   panning: {
     enabled: true,
-    modifiers: ["alt"]
+    modifiers: ['alt']
   },
   mousewheel: {
-      enabled: true,
-      modifiers: ["ctrl", "meta"],
-      factor: 1.2,
-      maxScale: 3.6,
-      minScale: 0.27
+    enabled: true,
+    modifiers: ['ctrl', 'meta'],
+    factor: 1.2,
+    maxScale: 3.6,
+    minScale: 0.27
   },
-  embedding:true
+  embedding: true
+  // interacting: false
 }

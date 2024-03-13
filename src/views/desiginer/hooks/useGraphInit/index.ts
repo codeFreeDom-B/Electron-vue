@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-07 09:49:47
+ * @LastEditTime: 2024-03-13 17:25:16
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -46,6 +46,17 @@ export default function () {
     dndRef.value = new Dnd({
       target: graphRef.value
     })
+    graphRef.value.on(
+      'cell:change:data',
+      (args: {
+        cell: any
+        current?: number // 当前值
+        previous?: number // 改变之前的值
+        options: any // 透传的 options
+      }) => {
+        console.log(args, '卧室改变的')
+      }
+    )
   })
   return {
     graphContainer,

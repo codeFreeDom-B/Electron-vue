@@ -10,14 +10,14 @@ import { getUUID } from '@/utils/utils'
 import { GraphicItemType, GraphicItemTypeName } from '../index.d'
 import type { MenuOption } from 'naive-ui'
 async function findExportedObjects() {
-  const modules = import.meta.glob("./*/index.ts");
+  const modules = import.meta.glob('./*/index.ts')
   for await (const modulePath of Object.values(modules)) {
-    const module = await modulePath();
+    const module = await modulePath()
     //@ts-ignore
     BuiltInConfig.childrens?.push(...Object.values(module))
   }
 }
-findExportedObjects();
+findExportedObjects()
 export const BuiltInConfig: MenuOption = {
   id: getUUID(),
   key: GraphicItemType.BUITIN,

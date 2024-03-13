@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-27 17:24:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-28 17:06:33
+ * @LastEditTime: 2024-03-13 14:49:07
  * @FilePath: \Electronvite\src\views\desiginer\hooks\enrollTemplateVue.ts
  * @Description:
  */
@@ -15,7 +15,6 @@ const modulesFiles = import.meta.glob('../../../node-config/graphics/built-in/*/
 
 // 渲染节点
 export async function loadAndRegisterComponents(Graph, Nodes) {
-  console.log(modulesFiles, 'modulesFiles')
   const modules = await Promise.all(Object.values(modulesFiles))
 
   Nodes.map((node) => {

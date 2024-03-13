@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-13 11:22:43
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-18 11:59:54
+ * @LastEditTime: 2024-03-08 17:47:31
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\NodeConfig\NodeConfig.vue
  * @Description: 
 -->
@@ -13,7 +13,9 @@
         <NTabPane name="BaseConfig" tab="属性">
           <NScrollbar style="max-height: 100%"> <BaseConfig :cell="props.cell" /> </NScrollbar>
         </NTabPane>
-        <NTabPane name="Animation" tab="动画"> 动画 </NTabPane>
+        <NTabPane name="Animation" tab="动画">
+          <Animation></Animation>
+        </NTabPane>
         <NTabPane name="DataBind" tab="数据绑定">
           <NButton @click="handleClick">绑定</NButton>
         </NTabPane>
@@ -29,7 +31,7 @@ export default { name: 'LineConfig' }
 import type { Cell } from '@antv/x6'
 import BaseConfig from './components/BaseConfig/BaseConfig.vue'
 import EventsBinds from '../../EvnetsBind/EvnetsBind.vue'
-import { onMounted } from 'vue'
+import Animation from './components/Animation/Animation.vue'
 import type { NButton } from 'naive-ui'
 let props = defineProps<{
   cell: Cell

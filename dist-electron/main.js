@@ -60,7 +60,6 @@ electron.app.whenReady().then(() => {
   electron.ipcMain.on("window-restore", function() {
     win.unmaximize();
   });
-  win.webContents.openDevTools();
   if (process.env.VITE_DEV_SERVER_URL) {
     win.webContents.openDevTools();
     win.loadURL(process.env.VITE_DEV_SERVER_URL);

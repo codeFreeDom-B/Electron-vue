@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-13 17:25:16
+ * @LastEditTime: 2024-03-14 13:56:28
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -47,14 +47,18 @@ export default function () {
       target: graphRef.value
     })
     graphRef.value.on(
-      'cell:change:data',
+      'cell:click',
       (args: {
         cell: any
         current?: number // 当前值
         previous?: number // 改变之前的值
         options: any // 透传的 options
       }) => {
-        console.log(args, '卧室改变的')
+        if (args.cell.getData()) {
+          const data = args.cell.getData()
+          if (data.EventConfig?.type != 1) return
+          args.cell.setData({ ...data, btnType: 'info' })
+        }
       }
     )
   })

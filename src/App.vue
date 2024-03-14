@@ -2,12 +2,12 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-07 09:19:43
+ * @LastEditTime: 2024-03-14 10:11:21
  * @FilePath: \Electronvite\src\App.vue
  * @Description: 
 -->
 <script setup lang="ts">
-import { darkTheme } from 'naive-ui'
+import { darkTheme, lightTheme } from 'naive-ui'
 import { MessagePlugin } from '@/views/components/plugins/MessagePlugin/index'
 import { LoadingPlugin } from '@/views/components/plugins/LoadingPlugin/index'
 import { onMounted } from 'vue'

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 16:13:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-12-19 20:32:06
+ * @LastEditTime: 2024-03-14 17:19:48
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DrageItem\DrageItem.vue
  * @Description: 
 -->
@@ -29,9 +29,12 @@
           text-align: center;
           line-height: 50px;
           font-size: 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         "
       >
-        <!-- <ChartBackImg :option="item"></ChartBackImg> -->
+        <img src="../../../../../../assets/view/node-config/button.png" alt="" />
       </div>
     </n-card>
   </div>

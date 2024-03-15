@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-21 11:38:54
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 16:33:14
+ * @LastEditTime: 2024-03-15 09:55:59
  * @FilePath: \Electronvite\src\views\desiginer\components\EvnetsBind\EvnetsBind.vue
  * @Description: 
 -->
@@ -19,7 +19,13 @@
       /></Item>
       <div>
         <div>选择节点</div>
-        <NTransfer ref="transfer" v-model:value="item.target" :options="cellList" />
+        <NTransfer
+          select-all-text="全选"
+          ref="transfer"
+          v-model:value="item.target"
+          :options="cellList"
+          @mouseenter="handleMouse"
+        />
       </div>
       <div style="display: flex; justify-content: center">
         <NButton type="info" @click="handleSave"> 保存 </NButton>
@@ -94,6 +100,9 @@ const handleSave = () => {
     ...props.cell.getData(),
     EventConfig: EventList.value
   })
+}
+const handleMouse = () => {
+  console.log(handleMouse, '1212')
 }
 // const eventsBindData = reactive<CustomEventsConfigIns[]>(configEventsData() || [])
 

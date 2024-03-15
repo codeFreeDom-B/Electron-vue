@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-25 19:03:58
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 17:44:34
+ * @LastEditTime: 2024-03-15 09:38:54
  * @FilePath: \Electronvite\src\views\login\hooks\useLogin.hook.ts
  * @Description:
  */
@@ -13,8 +13,8 @@ import BaseApi from '@/apis/login'
 
 export function useLogin() {
   const router = useRouter()
-  const username = ref('')
-  const password = ref('')
+  const username = ref('vtstar')
+  const password = ref('vtstar123')
   const HandleClick = () => {
     BaseApi.Login({
       name: username.value,

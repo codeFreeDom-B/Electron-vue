@@ -2,19 +2,14 @@
  * @Author: SUN HENG
  * @Date: 2023-12-19 18:35:56
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 17:29:59
+ * @LastEditTime: 2024-03-15 09:35:05
  * @FilePath: \Electronvite\src\node-config\graphics\built-in\vueText\index.vue
  * @Description: 
  
 -->
 <template>
   <div style="width: 100%; height: 100">
-    <img
-      style="width: 100%; height: 100%"
-      src="../../../../assets/view/node-config/beng.png"
-      alt=""
-    />
-    <!-- <svg
+    <svg
       width="100%"
       height="100%"
       viewBox="0 0 172 81"
@@ -864,7 +859,7 @@
           ></path>
         </g>
       </g>
-    </svg> -->
+    </svg>
   </div>
 </template>
 <script lang="ts">

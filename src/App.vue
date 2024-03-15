@@ -2,12 +2,13 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 10:11:21
+ * @LastEditTime: 2024-03-15 10:02:17
  * @FilePath: \Electronvite\src\App.vue
  * @Description: 
 -->
 <script setup lang="ts">
-import { darkTheme, lightTheme } from 'naive-ui'
+import { darkTheme, lightTheme, zhCN } from 'naive-ui'
+// import { , dateZhCN } from 'naive-ui'
 import { MessagePlugin } from '@/views/components/plugins/MessagePlugin/index'
 import { LoadingPlugin } from '@/views/components/plugins/LoadingPlugin/index'
 import { onMounted } from 'vue'
@@ -15,7 +16,7 @@ import { onMounted } from 'vue'
 
 <template>
   <div class="main">
-    <NConfigProvider class="config" :theme="darkTheme">
+    <NConfigProvider class="config" :locale="zhCN" :theme="darkTheme">
       <RouterView></RouterView>
       <NLoadingBarProvider>
         <LoadingPlugin> <slot></slot> </LoadingPlugin>

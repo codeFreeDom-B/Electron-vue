@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-02-06 15:00:57
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-07 09:43:42
+ * @LastEditTime: 2024-03-16 12:10:54
  * @FilePath: \Electronvite\src\views\WorkBenches\hooks.ts
  * @Description:
  */
@@ -38,7 +38,6 @@ export function getCaseData() {
         id: item.id
       }
     })
-    console.log(item)
   }
   return {
     CaseList,

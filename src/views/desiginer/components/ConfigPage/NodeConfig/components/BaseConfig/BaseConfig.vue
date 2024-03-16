@@ -118,8 +118,6 @@ const VisibleChange = debounce(() => {
 }, 400)
 
 const setData = debounce(() => {
-  console.log('添加数据', edgeData)
-
   props.cell.setData({
     data: edgeData.data
   })

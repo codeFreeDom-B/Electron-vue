@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 16:13:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 17:19:48
+ * @LastEditTime: 2024-03-16 12:11:26
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DrageItem\DrageItem.vue
  * @Description: 
 -->
@@ -52,7 +52,6 @@ let props = defineProps({
 })
 
 const ondragStart = (event: DragEvent, node: any) => {
-  console.log(node, props.dragList, 'node')
   if (node.shape.includes('vue')) {
     register(node)
   }

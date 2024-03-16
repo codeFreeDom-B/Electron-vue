@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-28 17:14:02
+ * @LastEditTime: 2024-03-16 12:10:32
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -103,11 +103,6 @@ const handleClick = async (key: number) => {
       (res: string) => {
         let GraphConfig = GraphInstance.toJSON()
         let JSONconfig = JSON.stringify(GraphConfig)
-        console.log(
-          window.GraphInstance.background.options,
-          'window.GraphInstance.background.options'
-        )
-
         let GraphOption = JSON.stringify(window.GraphInstance.background.options)
 
         setGraphConfig(Template.data.InstanceItem.id, {

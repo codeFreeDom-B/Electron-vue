@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-12-19 18:35:56
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-14 17:09:29
+ * @LastEditTime: 2024-03-16 12:10:21
  * @FilePath: \Electronvite\src\node-config\graphics\built-in\vuechart\index.vue
  * @Description: 
  
@@ -24,7 +24,6 @@ onMounted(() => {
   const getNode = inject('getNode')
   const node = getNode()
   node.on('change:data', () => {
-    console.log(node.getData(), 'lalalalal')
     if (node.getData()) {
       if (node.getData()?.btnType) {
         type.value = node.getData().btnType

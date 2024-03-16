@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-15 17:07:12
+ * @LastEditTime: 2024-03-16 12:08:03
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -18,16 +18,7 @@ export function setDefaultGraphListeners(graph: Graph) {
   graph.on('blank:dblclick', ({ e, x, y }) => {
     graph.addEdge({
       source: [x, y],
-      target: [x, y],
-
-      attrs: {
-        line: {
-          connection: true,
-          fill: 'none',
-          stroke: '#00bfff',
-          strokeWidth: 6
-        }
-      }
+      target: [x, y]
     })
   })
 

@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 21:53:03
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-15 18:04:45
+ * @LastEditTime: 2024-03-16 14:07:56
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\components\BaseConfig\BaseConfig.vue
  * @Description: 
 -->
@@ -64,8 +64,9 @@ export default { name: 'BaseCofig' }
 </script>
 <script setup lang="ts">
 import { reactive } from 'vue'
-import { debounce } from 'lodash'
+import { debounce, cloneDeep } from 'lodash'
 import type { Cell } from '@antv/x6'
+import { Timing } from '@antv/x6'
 import Item from '../../../../Item/Item.vue'
 import router from '@/router'
 
@@ -73,7 +74,7 @@ let props = defineProps<{
   cell: Cell
 }>()
 
-let Attrs = props.cell.getAttrs()
+let Attrs = cloneDeep(props.cell.getAttrs())
 
 let edgeData = reactive({
   title: props.cell.getProp('title'),
@@ -85,6 +86,7 @@ let edgeData = reactive({
     c7: {
       stroke: '#f5222d',
       fill: '#fe854f',
+      // 路径值[0,1]
       atConnectionRatio: 0,
       strokeWidth: 1,
       cursor: 'pointer',
@@ -100,13 +102,6 @@ const routers = [
   { label: '智能地铁线路由', value: 'metro' },
   { label: '实体关系路由', value: 'er' }
 ]
-window.GraphInstance.on('edge:render', ({ cell }) => {
-  if (cell.shape === 'custom-edge-with-rect') {
-    const rectMarker = cell.findView(graph.view).findChildByClassName('rect-marker')
-    const bbox = cell.getBBox()
-  }
-  console.log('我走了213123')
-})
 const attributeChange = debounce<(fnName: string, attrName: string) => void>((fnName, attrName) => {
   if (attrName == 'router') {
     // @ts-ignore
@@ -120,9 +115,7 @@ const VisibleChange = debounce(() => {
   if (!edgeData?.visible) return props.cell.removeTools()
 }, 400)
 const AttrsChange = debounce(() => {
-  console.log('添加动画', edgeData?.Attrs)
-  let mark = props.cell.getMarkup()
-  console.log(mark, 'Selector must be unique')
+  let mark = cloneDeep(props.cell.getMarkup())
   if (mark.length < 3) {
     mark.push({
       tagName: 'rect',
@@ -133,14 +126,19 @@ const AttrsChange = debounce(() => {
         fill: '#ffffff',
         stroke: '#000000',
         strokeWidth: 1,
-        rx: 5, // 圆角半径
-        ry: 5 // 同样也可以只设置rx，如果rx和ry相同的话
+        rx: 10, // 圆角半径
+        ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
       }
     })
     props.cell.setMarkup(mark)
   }
-
   props.cell.setAttrs(edgeData?.Attrs)
-  console.log(props.cell.getAttrs(), 'Attrs')
+  const options = {
+    delay: 0,
+    duration: 2000,
+    timing: Timing.linear
+  }
+
+  props.cell.transition('attrs/c7/atConnectionRatio', 1, options)
 }, 400)
 </script>

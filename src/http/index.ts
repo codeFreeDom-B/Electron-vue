@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2024-01-06 11:00:28
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-01-31 15:17:57
+ * @LastEditTime: 2024-03-16 12:10:15
  * @FilePath: \Electronvite\src\http\index.ts
  * @Description:
  */
@@ -35,7 +35,6 @@ const request = new Request({
     },
     // 响应拦截器
     responseInterceptors: (result: AxiosResponse) => {
-      console.log(result, '我是响应拦截器')
       return result
     }
   }

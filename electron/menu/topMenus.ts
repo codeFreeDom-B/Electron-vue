@@ -13,8 +13,7 @@ const menuItem = [
  * 点击关于
  */
 function aboutClick() {
-//   const icon = nativeImage.createFromPath('../../../public/img/github.png')
-  //    console.log(icon)
+  //   const icon = nativeImage.createFromPath('../../../public/img/github.png')
   dialog.showMessageBox({
     message: 'https://github.com/codeFreeDom-B/Electron-vue',
     type: 'info',

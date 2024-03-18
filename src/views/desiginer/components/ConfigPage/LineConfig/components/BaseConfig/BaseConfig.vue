@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 21:53:03
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-18 09:41:39
+ * @LastEditTime: 2024-03-18 16:21:22
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\components\BaseConfig\BaseConfig.vue
  * @Description: 
 -->
@@ -65,8 +65,8 @@ export default { name: 'BaseCofig' }
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { debounce, cloneDeep } from 'lodash'
-import type { Cell } from '@antv/x6'
-import { Timing } from '@antv/x6'
+// import type { Cell } from '@antv/x6'
+import { Timing, Cell } from '@antv/x6'
 import Item from '../../../../Item/Item.vue'
 import router from '@/router'
 
@@ -74,7 +74,51 @@ let props = defineProps<{
   cell: Cell
 }>()
 
+function formatCssOptions(value, svg: SVGElement) {
+  const getValue = ({ name, params }: { name: string; params?: string }) => svg[name](params)
+
+  if (/\#\{path\}/.test(value))
+    return value.replace('#{path}', getValue({ name: 'getAttribute', params: 'd' }))
+  else if (/\#\{length\}/.test(value))
+    return value.replace('#{length}', getValue({ name: 'getTotalLength' }))
+  else return value
+}
+
 let Attrs = cloneDeep(props.cell.getAttrs())
+const cellView = props.cell instanceof Cell ? GraphInstance.findViewByCell(props.cell) : props.cell
+let targetOptions = {
+  type: 'dom',
+  value: 'path',
+  styles: {
+    strokeDasharray: '36, 24',
+    fill: 'transparent',
+    stroke: '#FF2851',
+    strokeWidth: 9
+  },
+  attrs: {
+    d: '#{path}',
+    'stroke-linecap': 'round'
+  }
+}
+if (props.cell.isEdge()) {
+  const linePath = <SVGPathElement>cellView.container.firstChild
+
+  for (const key in targetOptions.attrs) {
+    targetOptions.attrs[key] = formatCssOptions(targetOptions.attrs[key], linePath)
+  }
+
+  for (const key in targetOptions.styles) {
+    targetOptions.styles[key] = formatCssOptions(targetOptions.styles[key], linePath)
+  }
+
+  let [length, percentage] = targetOptions.styles.strokeDasharray.split(',')
+
+  length = length >>> 0
+  percentage = percentage >>> 0
+
+  // options.keyframes[0].strokeDashoffset = 0
+  // options.keyframes[1].strokeDashoffset = (length + percentage) * 10
+}
 
 let edgeData = reactive({
   title: props.cell.getProp('title'),
@@ -83,14 +127,15 @@ let edgeData = reactive({
   router: 'normal',
   Attrs: {
     ...Attrs,
-    c7: {
-      stroke: '#f5222d',
-      fill: '#fe854f',
-      // 路径值[0,1]
-      atConnectionRatio: 0,
+    circleGroup: {
+      width: '60px',
+      height: '20px',
+      fill: 'red',
+      stroke: '#000000',
       strokeWidth: 1,
-      cursor: 'pointer',
-      y: '-10px'
+      y: -10,
+      rx: 10, // 圆角半径
+      ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
     }
   }
 })
@@ -114,10 +159,13 @@ const VisibleChange = debounce(() => {
   props.cell.setVisible(edgeData?.visible)
   if (!edgeData?.visible) return props.cell.removeTools()
 }, 400)
+// 添加动画
 const AttrsChange = debounce(() => {
   // @ts-ignore
   const edge = props?.cell
+  // @ts-ignore
   const sourcePoint = edge.getSourcePoint() // 获取源节点连接点坐标
+  // @ts-ignore
   const targetPoint = edge.getTargetPoint() // 获取目标节点连接点坐标
   const length = Math.hypot(targetPoint.x - sourcePoint.x, targetPoint.y - sourcePoint.y)
   const counts = Math.floor(length / (60 + 20 + 14))
@@ -129,12 +177,13 @@ const AttrsChange = debounce(() => {
       fill: 'red',
       stroke: '#000000',
       strokeWidth: 1,
+      y: -10,
       rx: 10, // 圆角半径
       ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
     }
   }
   for (let i = 0; i <= counts; i++) {
-    const selector = 'rect' + i + edge.id
+    const selector = 'rect' + i + new Date().getTime() + edge.id
     markup = [
       ...markup,
       {
@@ -143,22 +192,24 @@ const AttrsChange = debounce(() => {
         groupSelector: 'circleGroup'
       }
     ]
+    // @ts-ignore
     attrOption[selector] = {
-      atConnectionLengthKeepGradient: 0 + i * 80
+      atConnectionRatio: Number(0 + i * 0.1)
     }
   }
   edge.setMarkup(markup)
   edge.setAttrs(attrOption)
   const handleTransition = () => {
-    const circleList = Object.keys(attrOption).filter((item) => item !== 'circleGroup')
+    const circleList = Object.keys(attrOption).filter((item) => item.includes(edge.id))
     circleList.map((item) => {
-      const target = attrOption[item].atConnectionLengthKeepGradient + 80
-      edge.transition(`attrs/${item}/atConnectionLengthKeepGradient`, target, options)
+      // @ts-ignore
+      const target = attrOption[item].atConnectionRatio + 0.1
+      edge.transition(`attrs/${item}/atConnectionRatio`, target, options)
     })
   }
   const options = {
     delay: 0,
-    duration: 1500,
+    duration: 1000,
     timing: Timing.linear,
     complete: () => {
       edge.setAttrs(attrOption)
@@ -166,31 +217,5 @@ const AttrsChange = debounce(() => {
     }
   }
   handleTransition()
-  console.log(new Date().getTime(), 'procell213')
-
-  // if (mark.length < 3) {
-  //   mark.push({
-  //     tagName: 'rect',
-  //     selector: 'c7',
-  //     attrs: {
-  //       width: '60px',
-  //       height: '20px',
-  //       fill: '#ffffff',
-  //       stroke: '#000000',
-  //       strokeWidth: 1,
-  //       rx: 10, // 圆角半径
-  //       ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
-  //     }
-  //   })
-  //   props.cell.setMarkup(mark)
-  // }
-  // props.cell.setAttrs(edgeData?.Attrs)
-  // const options = {
-  //   delay: 0,
-  //   duration: 2000,
-  //   timing: Timing.linear
-  // }
-
-  // props.cell.transition('attrs/c7/atConnectionRatio', 1, options)
 }, 400)
 </script>

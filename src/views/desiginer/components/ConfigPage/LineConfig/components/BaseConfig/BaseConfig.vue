@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 21:53:03
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-16 14:07:56
+ * @LastEditTime: 2024-03-18 09:41:39
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\components\BaseConfig\BaseConfig.vue
  * @Description: 
 -->
@@ -115,30 +115,82 @@ const VisibleChange = debounce(() => {
   if (!edgeData?.visible) return props.cell.removeTools()
 }, 400)
 const AttrsChange = debounce(() => {
-  let mark = cloneDeep(props.cell.getMarkup())
-  if (mark.length < 3) {
-    mark.push({
-      tagName: 'rect',
-      selector: 'c7',
-      attrs: {
-        width: '60px',
-        height: '20px',
-        fill: '#ffffff',
-        stroke: '#000000',
-        strokeWidth: 1,
-        rx: 10, // 圆角半径
-        ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
-      }
-    })
-    props.cell.setMarkup(mark)
+  // @ts-ignore
+  const edge = props?.cell
+  const sourcePoint = edge.getSourcePoint() // 获取源节点连接点坐标
+  const targetPoint = edge.getTargetPoint() // 获取目标节点连接点坐标
+  const length = Math.hypot(targetPoint.x - sourcePoint.x, targetPoint.y - sourcePoint.y)
+  const counts = Math.floor(length / (60 + 20 + 14))
+  let markup = cloneDeep(props.cell.getMarkup())
+  const attrOption = {
+    circleGroup: {
+      width: '60px',
+      height: '20px',
+      fill: 'red',
+      stroke: '#000000',
+      strokeWidth: 1,
+      rx: 10, // 圆角半径
+      ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
+    }
   }
-  props.cell.setAttrs(edgeData?.Attrs)
+  for (let i = 0; i <= counts; i++) {
+    const selector = 'rect' + i + edge.id
+    markup = [
+      ...markup,
+      {
+        tagName: 'rect',
+        selector,
+        groupSelector: 'circleGroup'
+      }
+    ]
+    attrOption[selector] = {
+      atConnectionLengthKeepGradient: 0 + i * 80
+    }
+  }
+  edge.setMarkup(markup)
+  edge.setAttrs(attrOption)
+  const handleTransition = () => {
+    const circleList = Object.keys(attrOption).filter((item) => item !== 'circleGroup')
+    circleList.map((item) => {
+      const target = attrOption[item].atConnectionLengthKeepGradient + 80
+      edge.transition(`attrs/${item}/atConnectionLengthKeepGradient`, target, options)
+    })
+  }
   const options = {
     delay: 0,
-    duration: 2000,
-    timing: Timing.linear
+    duration: 1500,
+    timing: Timing.linear,
+    complete: () => {
+      edge.setAttrs(attrOption)
+      handleTransition()
+    }
   }
+  handleTransition()
+  console.log(new Date().getTime(), 'procell213')
 
-  props.cell.transition('attrs/c7/atConnectionRatio', 1, options)
+  // if (mark.length < 3) {
+  //   mark.push({
+  //     tagName: 'rect',
+  //     selector: 'c7',
+  //     attrs: {
+  //       width: '60px',
+  //       height: '20px',
+  //       fill: '#ffffff',
+  //       stroke: '#000000',
+  //       strokeWidth: 1,
+  //       rx: 10, // 圆角半径
+  //       ry: 10 // 同样也可以只设置rx，如果rx和ry相同的话
+  //     }
+  //   })
+  //   props.cell.setMarkup(mark)
+  // }
+  // props.cell.setAttrs(edgeData?.Attrs)
+  // const options = {
+  //   delay: 0,
+  //   duration: 2000,
+  //   timing: Timing.linear
+  // }
+
+  // props.cell.transition('attrs/c7/atConnectionRatio', 1, options)
 }, 400)
 </script>

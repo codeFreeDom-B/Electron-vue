@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 20:53:15
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-09-28 17:13:55
+ * @LastEditTime: 2024-03-26 14:19:29
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DesignDom\DesignDom.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@
     <div class="DomType">
       <NMenu
         v-model:value="DefalutMenuItem"
-        :options="props.defaultMenu.childrens as MenuOption[]"
+        :options="props.defaultMenu.childrens"
         @update-value="hanldeClick"
         :indent="0"
       >
@@ -47,6 +47,9 @@ watch(
   (val) => {
     DragNodeItem.value = (val.childrens as MenuOption[])[0]
     DefalutMenuItem.value = (val.childrens as MenuOption[])[0].key as string
+  },
+  {
+    immediate: true
   }
 )
 const hanldeClick = (key: string, menu: MenuOption) => {

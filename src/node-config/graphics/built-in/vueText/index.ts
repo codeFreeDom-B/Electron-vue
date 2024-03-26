@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 14:16:31
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-13 14:24:42
+ * @LastEditTime: 2024-03-26 13:59:45
  * @FilePath: \Electronvite\src\node-config\graphics\built-in\vueText\index.ts
  * @Description:
  */
@@ -16,6 +16,6 @@ const VueNode: NodeConfig = {
   name: BuiltInNodeName['Rect'],
   cateType: NodeConfigType.GRAPHIC,
   cateTypeName: NodeConfigTypeName.GRAPHIC,
-  Image: 'built-in-rect.png'
+  Image: 'pump.png'
 }
 export { VueNode }

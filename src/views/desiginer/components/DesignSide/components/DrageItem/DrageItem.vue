@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 16:13:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-16 12:11:26
+ * @LastEditTime: 2024-03-26 14:05:24
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DrageItem\DrageItem.vue
  * @Description: 
 -->
@@ -34,7 +34,7 @@
           align-items: center;
         "
       >
-        <img src="../../../../../../assets/view/node-config/button.png" alt="" />
+        <img style="width: 80px" :src="getAssetsFile(item.Image)" alt="" />
       </div>
     </n-card>
   </div>
@@ -50,7 +50,9 @@ let props = defineProps({
     type: Object
   }
 })
-
+const getAssetsFile = (name: string) => {
+  return new URL(`../../../../../../assets/view/node-config/${name}`, import.meta.url).href
+}
 const ondragStart = (event: DragEvent, node: any) => {
   if (node.shape.includes('vue')) {
     register(node)

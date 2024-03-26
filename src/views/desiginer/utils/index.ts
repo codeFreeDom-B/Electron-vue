@@ -2,24 +2,91 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-16 12:08:03
+ * @LastEditTime: 2024-03-26 13:19:51
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
 import type { Cell, Graph } from '@antv/x6'
+import { Edge } from '@antv/x6'
 import _ from 'lodash'
 import eventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
 import { useNodesDatas } from '@/stores/modules/nodesDatas/nodesDatas'
 import { storeToRefs } from 'pinia'
+class WaterFlowEdge extends Edge {
+  constructor(options) {
+    super(options)
+    this.currentProgress = 0
+    this.animationIntervalId = null
+    this.animationDuration = 5000 // 动画持续时间
+  }
+
+  init() {
+    // 初始化后开始动画
+    this.startWaterFlowAnimation()
+    super.init()
+  }
+
+  startWaterFlowAnimation() {
+    const step = () => {
+      this.currentProgress = (this.currentProgress + 1) % 1
+      this.updateWaterFlowColor()
+
+      if (this.currentProgress > 0) {
+        this.animationIntervalId = window.requestAnimationFrame(step)
+      }
+    }
+
+    this.animationIntervalId = window.requestAnimationFrame(step)
+  }
+
+  stopWaterFlowAnimation() {
+    window.cancelAnimationFrame(this.animationIntervalId)
+  }
+
+  updateWaterFlowColor() {
+    // 假设edge.shape有个path属性存储了边的路径数据
+    // 并且edge有一些style属性可以被更新
+    const gradientId = 'water-flow-gradient'
+    const gradient = this.graph.get('defs').addGradient({
+      id: gradientId,
+      stops: [
+        { offset: 0, color: '#00FFFF' },
+        { offset: this.currentProgress, color: '#00FFFF' },
+        { offset: this.currentProgress, color: '#FFFFFF' },
+        { offset: 1, color: '#FFFFFF' }
+      ]
+    })
+
+    // 更新边的颜色为渐变色
+    this.attr('.line', {
+      stroke: `url(#${gradientId})`
+    })
+  }
+
+  // 在edge销毁时记得停止动画
+  destroy() {
+    this.stopWaterFlowAnimation()
+    super.destroy()
+  }
+}
+
 export function setDefaultGraphListeners(graph: Graph) {
   const NodesDatas = useNodesDatas()
+
   // 双击创建边
   graph.on('blank:dblclick', ({ e, x, y }) => {
     graph.addEdge({
       source: [x, y],
       target: [x, y]
     })
+    // graph.registerEdge('water-flow-edge', WaterFlowEdge)
+    // const edge = new WaterFlowEdge({
+    //   source: [x, y], // 起点节点ID
+    //   target: [x, y], // 终点节点ID
+    //   type: 'water-flow-edge'
+    // })
+    // graph.addEdge(edge)
   })
 
   // 鼠标经过边时，显示target

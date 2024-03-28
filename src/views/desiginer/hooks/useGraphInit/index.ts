@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 12:04:14
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-18 16:20:32
+ * @LastEditTime: 2024-03-28 16:14:34
  * @FilePath: \Electronvite\src\views\desiginer\hooks\useGraphInit\index.ts
  * @Description:
  */
@@ -46,21 +46,6 @@ export default function () {
     dndRef.value = new Dnd({
       target: graphRef.value
     })
-    graphRef.value.on(
-      'cell:click',
-      (args: {
-        cell: any
-        current?: number // 当前值
-        previous?: number // 改变之前的值
-        options: any // 透传的 options
-      }) => {
-        if (args.cell.getData()) {
-          const data = args.cell.getData()
-          if (data.EventConfig?.type != 1) return
-          args.cell.setData({ ...data, btnType: 'info' })
-        }
-      }
-    )
   })
   return {
     graphContainer,

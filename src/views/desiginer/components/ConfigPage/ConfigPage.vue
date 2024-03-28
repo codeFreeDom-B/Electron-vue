@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 14:39:31
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-27 18:13:16
+ * @LastEditTime: 2024-03-28 17:20:35
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\ConfigPage.vue
  * @Description: 
 -->
@@ -32,9 +32,11 @@ const componentTypeEnum = {
 }
 let componentType = ref(componentTypeEnum.page)
 let cell = shallowRef<Cell>()
+
 onMounted(() => {
   EventEmitter.on(EventEmitterEnum.ACTIVE_CELL, (Select) => {
     // @ts-ignore
+
     cell.value = Select?.node
     if (!Select) return (componentType.value = componentTypeEnum.page)
     // @ts-ignore

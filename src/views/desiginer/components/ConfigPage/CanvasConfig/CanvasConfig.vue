@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 17:08:19
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-28 15:17:54
+ * @LastEditTime: 2024-03-28 17:33:00
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\CanvasConfig\CanvasConfig.vue
  * @Description: 
 -->
@@ -37,9 +37,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { ArchiveOutline as ArchiveIcon } from '@vicons/ionicons5'
+
 let backgroundColor = ref()
+onMounted(() => {
+  backgroundColor.value = window.GraphInstance?.background?.options?.background?.color
+})
+
 const handleChange = () => {
   window.GraphInstance.drawBackground({
     color: backgroundColor.value

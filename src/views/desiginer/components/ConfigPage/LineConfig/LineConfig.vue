@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 17:08:02
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-27 20:48:16
+ * @LastEditTime: 2024-03-28 17:42:00
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\LineConfig.vue
  * @Description: 
 -->
@@ -13,8 +13,12 @@
         <NTabPane name="BaseConfig" tab="属性">
           <NScrollbar style="max-height: 100%"> <BaseConfig :cell="cell" /> </NScrollbar>
         </NTabPane>
-        <NTabPane name="Animation" tab="动画"> 动画 </NTabPane>
-        <NTabPane name="DataBind" tab="数据绑定"> 数据绑定 </NTabPane>
+        <NTabPane name="Animation" tab="动画">
+          <Animation :cell="cell"></Animation>
+        </NTabPane>
+        <NTabPane name="DataBind" tab="数据绑定">
+          <DataBind></DataBind>
+        </NTabPane>
         <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds :cell="cell" /> </NTabPane>
       </NTabs>
     </NCard>
@@ -27,7 +31,9 @@ export default { name: 'LineConfig' }
 import type { Cell } from '@antv/x6'
 import BaseConfig from './components/BaseConfig/BaseConfig.vue'
 import EventsBinds from '../../EvnetsBind/EvnetsBind.vue'
+import DataBind from '../../DataBind/DataBind.vue'
 import { onMounted } from 'vue'
+import Animation from './components/Animation/Animation.vue'
 defineProps<{
   cell: Cell
 }>()

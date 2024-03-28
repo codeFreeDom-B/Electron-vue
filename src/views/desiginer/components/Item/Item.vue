@@ -2,8 +2,8 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 22:01:48
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-10-08 22:10:20
- * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\components\Item\Item.vue
+ * @LastEditTime: 2024-03-28 15:18:31
+ * @FilePath: \Electronvite\src\views\desiginer\components\Item\Item.vue
  * @Description: 
 -->
 <template>

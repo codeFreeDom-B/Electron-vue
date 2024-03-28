@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-07 14:47:47
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-28 13:17:32
+ * @LastEditTime: 2024-03-28 17:19:13
  * @FilePath: \Electronvite\src\views\desiginer\utils\index.ts
  * @Description:
  */
@@ -13,6 +13,7 @@ import eventEmitter from '@/views/desiginer/hooks/useEventMitt'
 import { EventEmitterEnum } from '@/views/desiginer/utils/EventMitt'
 import { useNodesDatas } from '@/stores/modules/nodesDatas/nodesDatas'
 import { storeToRefs } from 'pinia'
+import Item from '../components/Item/Item.vue'
 const AnimationOptions = [
   { label: '正向流动', value: '20s linear 0s infinite normal none running ant-line' },
   { label: '反向流动', value: '20s linear 0s infinite reverse none running ant-line' },
@@ -30,9 +31,40 @@ class PipelineEdge extends Edge {
   handleStateChange(model) {
     const { cell } = model
     const data = cell.getData()
-    if (data.flowDirection == '正向流动') {
-      cell.setAttrByPath('line/stroke', '#7eb2fb')
-      cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+    if (data.TriggerMode == 'autoPlay') {
+      if (data.flowDirection) {
+        cell.setAttrByPath('line/stroke', '#7eb2fb')
+        cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+      } else {
+        cell.setAttrByPath('line/stroke', '#333')
+        cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+      }
+    } else {
+      if (data.guardOptions.length == 0)
+        return (
+          cell.setAttrByPath('line/stroke', '#333') &&
+          cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+        )
+      let isPlay = true
+      data.guardOptions.map((Item) => {
+        if (Item.name == Item.value) {
+          isPlay = isPlay && true
+        } else {
+          isPlay = false
+        }
+      })
+      if (isPlay != true)
+        return (
+          cell.setAttrByPath('line/stroke', '#333') &&
+          cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+        )
+      if (data.flowDirection) {
+        cell.setAttrByPath('line/stroke', '#7eb2fb')
+        cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+      } else {
+        cell.setAttrByPath('line/stroke', '#333')
+        cell.setAttrByPath('line/style/animation', cell.data.flowDirection)
+      }
     }
   }
 }
@@ -42,7 +74,18 @@ Graph.registerEdge('arrow-edge', PipelineEdge)
 
 export function setDefaultGraphListeners(graph: Graph) {
   // 双击创建边
-
+  graph.on('selection:changed', () => {
+    const selectedNodes = graph.getSelectedCells()
+    const cell = graph.getSelectedCells ? graph.getSelectedCells[0] : null
+    eventEmitter.emit(EventEmitterEnum.CELL_SELECT, {
+      shape: cell
+        ? cell.shape == 'edge' || cell.shape == 'arrow-edge'
+          ? cell.shape
+          : 'node'
+        : 'page',
+      node: cell
+    })
+  })
   graph.on('blank:dblclick', ({ e, x, y }) => {
     graph.addEdge({
       shape: 'arrow-edge',
@@ -85,13 +128,18 @@ export function setDefaultGraphListeners(graph: Graph) {
         }
       },
       data: {
+        // 触发方式
+        TriggerMode: 'autoPlay',
         flowDirection: '', // 初始化流动方向
-        AnimationOptions
+        AnimationOptions,
+        guardOptions: []
         //动画的选项
       }
     })
   })
-
+  graph.on('cell:unselected', ({ cell }) => {
+    cell.removeTools()
+  })
   // 鼠标经过边时，显示target
   graph.on('edge:mouseenter', ({ cell }) => {
     cell.addTools([

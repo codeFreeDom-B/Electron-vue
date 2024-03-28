@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:19:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-16 12:10:32
+ * @LastEditTime: 2024-03-27 13:21:22
  * @FilePath: \Electronvite\src\views\desiginer\EditPage.vue
  * @Description: 
 -->
@@ -89,6 +89,8 @@ onMounted(async () => {
   Template = await getTemplateData(route.query!.id)
   let Config = JSON.parse(Template.data.InstanceItem.GraphConfig)
   let Options = JSON.parse(Template.data.InstanceItem.GraphOption)
+  console.log(Config.cells, ' Config.cells')
+
   await loadAndRegisterComponents(GraphInstance, Config.cells)
   await loadAndGraphOptions(GraphInstance, Options)
   // Config.cells

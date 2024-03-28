@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 14:39:31
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-20 15:40:24
+ * @LastEditTime: 2024-03-27 18:13:16
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\ConfigPage.vue
  * @Description: 
 -->
@@ -38,7 +38,11 @@ onMounted(() => {
     cell.value = Select?.node
     if (!Select) return (componentType.value = componentTypeEnum.page)
     // @ts-ignore
-    componentType.value = componentTypeEnum[Select.shape]
+    if (Select.shape == 'arrow-edge' || Select.shape == 'edge') {
+      componentType.value = componentTypeEnum['edge']
+    } else {
+      componentType.value = componentTypeEnum[Select.shape]
+    }
   })
 })
 </script>

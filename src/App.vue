@@ -2,12 +2,16 @@
  * @Author: SUN HENG
  * @Date: 2023-09-08 11:00:55
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-15 10:02:17
+ * @LastEditTime: 2024-03-26 17:35:33
  * @FilePath: \Electronvite\src\App.vue
  * @Description: 
 -->
 <script setup lang="ts">
 import { darkTheme, lightTheme, zhCN } from 'naive-ui'
+// 先加载一会,免得读取文件慢
+import { useDesignMenuStore } from '@/stores/modules/designMenuStore/designMenuStore'
+const DesignMenuStore = useDesignMenuStore()
+DesignMenuStore.getPackageListData()
 // import { , dateZhCN } from 'naive-ui'
 import { MessagePlugin } from '@/views/components/plugins/MessagePlugin/index'
 import { LoadingPlugin } from '@/views/components/plugins/LoadingPlugin/index'

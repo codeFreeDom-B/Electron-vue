@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 20:53:15
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-26 14:19:29
+ * @LastEditTime: 2024-03-26 17:47:25
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DesignDom\DesignDom.vue
  * @Description: 
 -->
@@ -11,14 +11,13 @@
     <div class="DomType">
       <NMenu
         v-model:value="DefalutMenuItem"
-        :options="props.defaultMenu.childrens"
+        :options="props.defaultMenu.childrens as MenuOption[]"
         @update-value="hanldeClick"
-        :indent="0"
       >
       </NMenu>
     </div>
     <div class="DomPack">
-      <DrageItem v-if="DragNodeItem" :drag-list="DragNodeItem.childrens"></DrageItem>
+      <DrageItem :drag-list="DragNodeItem"></DrageItem>
       <!-- <div
         v-for="item in "
         :key="item.id"
@@ -35,24 +34,31 @@ export default { name: 'DesignDom' }
 <script setup lang="ts">
 import { type MenuOption, NMenu } from 'naive-ui'
 import DrageItem from '../DrageItem/DrageItem.vue'
-import { watch, ref, type Ref } from 'vue'
+import { watch, ref, type Ref, onMounted } from 'vue'
 
 let props = defineProps<{
   defaultMenu: MenuOption
 }>()
-let DefalutMenuItem: Ref<string> = ref('')
+let DefalutMenuItem: Ref<string> = ref()
 let DragNodeItem = ref()
-watch(
-  () => props.defaultMenu,
-  (val) => {
-    DragNodeItem.value = (val.childrens as MenuOption[])[0]
-    DefalutMenuItem.value = (val.childrens as MenuOption[])[0].key as string
-  },
-  {
-    immediate: true
-  }
-)
+onMounted(() => {
+  watch(
+    () => props.defaultMenu,
+    (val) => {
+      console.log(val.childrens, 'val.childrens')
+
+      DragNodeItem.value = (val.childrens as MenuOption[])[0]
+      DefalutMenuItem.value = (val.childrens as MenuOption[])[0].key as string
+    },
+    {
+      immediate: true
+    }
+  )
+})
+
 const hanldeClick = (key: string, menu: MenuOption) => {
+  console.log(menu, 'menu')
+
   DragNodeItem.value = menu
 }
 </script>

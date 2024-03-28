@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-10-08 17:08:02
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-11-21 11:44:14
+ * @LastEditTime: 2024-03-27 20:48:16
  * @FilePath: \Electronvite\src\views\desiginer\components\ConfigPage\LineConfig\LineConfig.vue
  * @Description: 
 -->
@@ -15,7 +15,7 @@
         </NTabPane>
         <NTabPane name="Animation" tab="动画"> 动画 </NTabPane>
         <NTabPane name="DataBind" tab="数据绑定"> 数据绑定 </NTabPane>
-        <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds /> </NTabPane>
+        <NTabPane name="EventBind" tab="事件绑定"> <EventsBinds :cell="cell" /> </NTabPane>
       </NTabs>
     </NCard>
   </div>

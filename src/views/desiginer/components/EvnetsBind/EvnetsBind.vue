@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-11-21 11:38:54
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-15 09:55:59
+ * @LastEditTime: 2024-03-27 20:46:27
  * @FilePath: \Electronvite\src\views\desiginer\components\EvnetsBind\EvnetsBind.vue
  * @Description: 
 -->
@@ -78,7 +78,9 @@ let cellList = ref<
 >([])
 onMounted(() => {
   let cells = cloneDeep(window.GraphInstance.getCells())
-  EventList.value = props.cell.getData()?.EventConfig || []
+  console.log(props.cell, '我事件cell')
+
+  EventList.value = props.cell?.getData()?.EventConfig || []
   cells.map((item) => {
     cellList.value.push({
       label: item.getProp('title'),

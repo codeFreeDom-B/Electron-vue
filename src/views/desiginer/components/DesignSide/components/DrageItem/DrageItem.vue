@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-28 16:13:08
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-03-26 14:05:24
+ * @LastEditTime: 2024-03-26 17:49:21
  * @FilePath: \Electronvite\src\views\desiginer\components\DesignSide\components\DrageItem\DrageItem.vue
  * @Description: 
 -->
@@ -11,7 +11,7 @@
     <n-card
       class="weigetItem"
       draggable="true"
-      v-for="item in props.dragList"
+      v-for="item in props.dragList?.childrens"
       :key="item.id"
       @mousedown="ondragStart($event, item.node)"
     >

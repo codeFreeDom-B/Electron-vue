@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-22 15:33:07
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2023-09-28 16:02:50
+ * @LastEditTime: 2024-03-26 17:24:22
  * @FilePath: \Electronvite\src\stores\modules\designMenuStore\designMenuStore.ts
  * @Description:
  */
@@ -10,12 +10,12 @@ import { defineStore } from 'pinia'
 import { getUUID, renderIcon } from '@/utils/utils'
 import { InfiniteSharp, LogoVue, Image } from '@vicons/ionicons5'
 import { type DesignMenuStoreType } from './designMenuStore.d'
-import { NodeConfigList } from "@/node-config"
+import { NodeConfigList } from '@/node-config'
 import type { MenuOption } from 'naive-ui'
 export const useDesignMenuStore = defineStore({
   id: 'useDesignMenuStore',
   state: (): DesignMenuStoreType => ({
-    packageList: [],
+    packageList: []
     // NodeConfigList: []
   }),
   getters: {
@@ -26,10 +26,8 @@ export const useDesignMenuStore = defineStore({
   },
   actions: {
     getPackageListData() {
-      
-      
       this.packageList = [
-      ...NodeConfigList,
+        ...NodeConfigList,
         {
           id: getUUID(),
           label: '组件',
@@ -67,6 +65,6 @@ export const useDesignMenuStore = defineStore({
           icon: renderIcon(Image)
         }
       ]
-    },
+    }
   }
 })

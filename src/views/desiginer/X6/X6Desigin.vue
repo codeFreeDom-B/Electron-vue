@@ -2,7 +2,7 @@
  * @Author: SUN HENG
  * @Date: 2023-09-21 15:12:34
  * @LastEditors: SUN HENG && 17669477887
- * @LastEditTime: 2024-02-28 16:47:11
+ * @LastEditTime: 2024-03-27 13:08:59
  * @FilePath: \Electronvite\src\views\desiginer\X6\X6Desigin.vue
  * @Description: 
 -->
@@ -68,6 +68,24 @@ const handleDragEnter = () => {
 @keyframes ant-line {
   to {
     stroke-dashoffset: -1000;
+  }
+}
+.edge-animate {
+  animation: edge-draw 2s ease-in-out forwards;
+}
+.my-custom-node-class {
+  background: red;
+}
+
+/* 定义关键帧动画 */
+@keyframes edge-draw {
+  from {
+    stroke-dasharray: 0, 100%;
+    stroke-dashoffset: 100%;
+  }
+  to {
+    stroke-dasharray: 100%, 0;
+    stroke-dashoffset: 0;
   }
 }
 </style>
